@@ -1,0 +1,72 @@
+{% extends 'dashboard/base.html' %} {% block content_dashboard %}
+<div class="container-fluid py-5">
+  <div class="row">
+<div class="col-12 col-md-6">
+    <div class="card text-start">
+        <h5 class="m-3">Imprimer l'étiquette</h5>
+      <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="mb-3">
+                      <label for="" class="form-label"></label>
+                      <input  type="text" class="form-control" value="reference"  id="reference" aria-describedby="helpId" placeholder="Référence">
+                    </div></th>
+                    <th>
+                        <div class="mb-3">
+                          <label for="" class="form-label"></label>
+                          <input type="text" class="form-control" value="etage"   id="etager" aria-describedby="helpId" placeholder="étagère">
+                        </div>
+                    </th>
+                    <th>
+                      <button onclick="Print(document.getElementById('etager').value,document.getElementById('reference').value)" type="button" class="btn btn-outline-primary"><i class="fa fa-print" aria-hidden="true"></i></button>
+                      
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   
+                </tr>
+            </tbody>
+        </table>
+        <div id="generate">
+            <br>
+            <svg id="barcode"></svg>
+            <br>
+            </div>
+      </div>
+    </div>
+</div>
+  </div>
+</div>
+<style>
+    #barcode{
+        background-color:white;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<script>
+    function Print(etager,reference) {
+        JsBarcode("#barcode", reference, {
+        format: "code128",
+        width: 3,
+        height: 30,
+        font: "fantasy",
+        fontSize:22,
+        marginTop:42,
+        textMargin:8,
+        text: `${etager}-${reference}`,
+      });
+        var printContents = document.getElementById("generate").innerHTML;
+        for(let i=0;i<3;i++)
+        printContents+=document.getElementById("generate").innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+}
+
+</script>
+{% endblock content_dashboard %}

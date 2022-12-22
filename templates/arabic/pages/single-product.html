@@ -1,0 +1,854 @@
+{% extends 'arabic/base.html' %}
+{% load static %}
+{% block SEO %}
+<meta name="description" content="{{config.SEO_DESCRIPTION}}" />
+<link rel="canonical" href="{{config.SITE_URL}}" />
+<link rel="next" href="{{config.SITE_URL}}" />
+<meta property="og:locale" content="ar_AR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{config.SITE_NAME}} - {{product.name_ar}}  " />
+<meta property="og:description" content="{{config.SEO_DESCRIPTION}}" />
+<meta property="og:url" content="{{config.SITE_URL}}" />
+<meta property="og:site_name" content="{{config.SITE_NAME}}" />
+<meta property="og:image" content="{{product.image.url}}" />
+<meta property="og:image:width" content="813" />
+<meta property="og:image:height" content="360" />
+<meta property="og:image:type" content="image/png" />
+{% endblock SEO %}
+{% block sketelon %}
+<div id="loading" class="container">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <div id="card">
+        <div class="card-image">
+          <div class="block pulsate">
+          </div>
+          <svg class="fpo " width="84px" height="63px" x="50%" y="50%" viewBox="0 0 84 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+              <title>Shape</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-964.000000, -1012.000000)" fill-opacity="0.06">
+                  <g id="16---Workpaper-Loading-Copy" transform="translate(836.000000, 909.000000)" fill="#000000">
+                      <g id="Icons-/-Special-/-RTE-/-Image" transform="translate(100.000000, 67.000000)">
+                          <g id="Icons-/-RTE-/-ImageSpecial">
+                              <path d="M108.368088,36.5625 L30.8485565,36.5625 C29.319526,36.5625 28.0800018,37.8216991 28.0800018,39.375 L28.0800018,95.625 C28.0800018,97.1783009 29.319526,98.4375 30.8485565,98.4375 L108.368088,98.4375 C109.897118,98.4375 111.136642,97.1783009 111.136642,95.625 L111.136642,39.375 C111.136642,37.8216991 109.897118,36.5625 108.368088,36.5625 L108.368088,36.5625 Z M105.599533,42.1875 L105.599533,81.225 L96.7678436,68.68125 C96.2965986,68.0076728 95.5575991,67.5787153 94.747102,67.5082962 C93.936605,67.4378771 93.1366348,67.7331229 92.5596405,68.315625 L82.0668182,79.003125 L59.1154999,55.6875 C58.0356599,54.5970274 56.2916778,54.5970274 55.2118378,55.6875 L33.6171112,77.596875 L33.6171112,42.1875 L105.599533,42.1875 L105.599533,42.1875 Z M33.6171112,92.8125 L33.6171112,85.528125 L57.149826,61.621875 L80.1011444,84.9375 C81.1809844,86.0279726 82.9249665,86.0279726 84.0048065,84.9375 L94.1654022,74.64375 L105.599533,90.9 L105.599533,92.8125 L33.6171112,92.8125 L33.6171112,92.8125 Z M77.9139862,56.25 C77.9139862,53.1433983 80.3930345,50.625 83.4510956,50.625 C86.5091566,50.625 88.988205,53.1433983 88.988205,56.25 C88.988205,59.3566017 86.5091566,61.875 83.4510956,61.875 C80.3930345,61.875 77.9139862,59.3566017 77.9139862,56.25 L77.9139862,56.25 Z" id="Shape"></path>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+        </div>
+        <div class="card-content">
+          <div class="block2 pulsate">
+          </div>
+          <div class="block3 pulsate">
+          </div>
+          <div class="circle pulsate">
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div id="card">
+        <div class="card-image">
+          <div class="block pulsate">
+          </div>
+          <svg class="fpo " width="84px" height="63px" x="50%" y="50%" viewBox="0 0 84 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+              <title>Shape</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-964.000000, -1012.000000)" fill-opacity="0.06">
+                  <g id="16---Workpaper-Loading-Copy" transform="translate(836.000000, 909.000000)" fill="#000000">
+                      <g id="Icons-/-Special-/-RTE-/-Image" transform="translate(100.000000, 67.000000)">
+                          <g id="Icons-/-RTE-/-ImageSpecial">
+                              <path d="M108.368088,36.5625 L30.8485565,36.5625 C29.319526,36.5625 28.0800018,37.8216991 28.0800018,39.375 L28.0800018,95.625 C28.0800018,97.1783009 29.319526,98.4375 30.8485565,98.4375 L108.368088,98.4375 C109.897118,98.4375 111.136642,97.1783009 111.136642,95.625 L111.136642,39.375 C111.136642,37.8216991 109.897118,36.5625 108.368088,36.5625 L108.368088,36.5625 Z M105.599533,42.1875 L105.599533,81.225 L96.7678436,68.68125 C96.2965986,68.0076728 95.5575991,67.5787153 94.747102,67.5082962 C93.936605,67.4378771 93.1366348,67.7331229 92.5596405,68.315625 L82.0668182,79.003125 L59.1154999,55.6875 C58.0356599,54.5970274 56.2916778,54.5970274 55.2118378,55.6875 L33.6171112,77.596875 L33.6171112,42.1875 L105.599533,42.1875 L105.599533,42.1875 Z M33.6171112,92.8125 L33.6171112,85.528125 L57.149826,61.621875 L80.1011444,84.9375 C81.1809844,86.0279726 82.9249665,86.0279726 84.0048065,84.9375 L94.1654022,74.64375 L105.599533,90.9 L105.599533,92.8125 L33.6171112,92.8125 L33.6171112,92.8125 Z M77.9139862,56.25 C77.9139862,53.1433983 80.3930345,50.625 83.4510956,50.625 C86.5091566,50.625 88.988205,53.1433983 88.988205,56.25 C88.988205,59.3566017 86.5091566,61.875 83.4510956,61.875 C80.3930345,61.875 77.9139862,59.3566017 77.9139862,56.25 L77.9139862,56.25 Z" id="Shape"></path>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+        </div>
+        <div class="card-content">
+          <div class="block2 pulsate">
+          </div>
+          <div class="block3 pulsate">
+          </div>
+          <div class="circle pulsate">
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div id="card">
+        <div class="card-image">
+          <div class="block pulsate">
+          </div>
+          <svg class="fpo " width="84px" height="63px" x="50%" y="50%" viewBox="0 0 84 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+              <title>Shape</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-964.000000, -1012.000000)" fill-opacity="0.06">
+                  <g id="16---Workpaper-Loading-Copy" transform="translate(836.000000, 909.000000)" fill="#000000">
+                      <g id="Icons-/-Special-/-RTE-/-Image" transform="translate(100.000000, 67.000000)">
+                          <g id="Icons-/-RTE-/-ImageSpecial">
+                              <path d="M108.368088,36.5625 L30.8485565,36.5625 C29.319526,36.5625 28.0800018,37.8216991 28.0800018,39.375 L28.0800018,95.625 C28.0800018,97.1783009 29.319526,98.4375 30.8485565,98.4375 L108.368088,98.4375 C109.897118,98.4375 111.136642,97.1783009 111.136642,95.625 L111.136642,39.375 C111.136642,37.8216991 109.897118,36.5625 108.368088,36.5625 L108.368088,36.5625 Z M105.599533,42.1875 L105.599533,81.225 L96.7678436,68.68125 C96.2965986,68.0076728 95.5575991,67.5787153 94.747102,67.5082962 C93.936605,67.4378771 93.1366348,67.7331229 92.5596405,68.315625 L82.0668182,79.003125 L59.1154999,55.6875 C58.0356599,54.5970274 56.2916778,54.5970274 55.2118378,55.6875 L33.6171112,77.596875 L33.6171112,42.1875 L105.599533,42.1875 L105.599533,42.1875 Z M33.6171112,92.8125 L33.6171112,85.528125 L57.149826,61.621875 L80.1011444,84.9375 C81.1809844,86.0279726 82.9249665,86.0279726 84.0048065,84.9375 L94.1654022,74.64375 L105.599533,90.9 L105.599533,92.8125 L33.6171112,92.8125 L33.6171112,92.8125 Z M77.9139862,56.25 C77.9139862,53.1433983 80.3930345,50.625 83.4510956,50.625 C86.5091566,50.625 88.988205,53.1433983 88.988205,56.25 C88.988205,59.3566017 86.5091566,61.875 83.4510956,61.875 C80.3930345,61.875 77.9139862,59.3566017 77.9139862,56.25 L77.9139862,56.25 Z" id="Shape"></path>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+        </div>
+        <div class="card-content">
+          <div class="block2 pulsate">
+          </div>
+          <div class="block3 pulsate">
+          </div>
+          <div class="circle pulsate">
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<style>
+
+  .fpo {
+      position: relative;
+      margin: 25% auto;
+      display: block;
+  }
+  .pulsate{
+    background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 2.25s ease infinite;
+    -moz-animation: Gradient 2.25s ease infinite;
+    animation: Gradient 2.25s ease infinite;
+  }
+  .block {
+    display:block;
+    width:271px;
+    height:16px;
+    color:#black;
+  }
+  .block2 {
+    width:78px;
+    height:8px;
+    margin-bottom:8px;
+  }
+  .block3 {
+    width:131px;
+    height:8px;
+    margin-bottom:16px;
+  }
+  .circle {
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    float:right;
+    
+  }
+  #card {
+    box-sizing: border-box;
+    width: 335px;
+    background: #fff;
+    position: relative;
+    margin:auto;
+    top:25%;
+  }
+  .card-image {
+    box-sizing: border-box;
+    display:block;
+    width:335px;
+    height:243px;
+    background:#FAFAFA;
+    padding:16px;
+  }
+  .card-content {
+    clear:both;
+    box-sizing: border-box;
+    padding:16px;
+    background:#fff;
+  }
+  @-webkit-keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @-moz-keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+</style>
+</div>
+</div>
+
+{% endblock sketelon %}
+{% block css %}
+<link
+rel="stylesheet"
+rel="preload"
+href="{% static 'css/nouislider.min.css'%}"
+/>
+<link
+rel="stylesheet"
+href="{% static 'css/owl.carousel.min.css'%}"
+/>
+
+<link
+rel="stylesheet"
+rel="preload"
+href="{% static 'css/ion.rangeSlider.min.css'%}"
+/>
+<link
+rel="stylesheet"
+rel="preload"
+href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
+/>
+
+{% endblock css %}
+
+{% block content %}
+<div class="product_image_area mb-5">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-6" dir="ltr">
+              <div class="s_Product_carousel">
+                <div class="single-prd-item">
+                    <img class="img-fluid" src="{{product.image.url}}" alt="">
+                </div>
+                {% if product_imgs %}
+                {% for img in product_imgs %}
+                <div class="single-prd-item">
+                  <img class="img-fluid" src="{{img.image.url}}" alt="">
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="single-prd-item">
+                <img class="img-fluid" src="{{product.image.url}}" alt="">
+              </div>
+
+                {% endif %}
+
+            </div>
+          </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text" style="text-align:initial;">
+                    <h3>{{product.name_ar}}</h3>
+                    <h2>{{product.price}} دج </h2>
+                   
+                    <ul class="list">
+                        <li><a class="active" href="#"><span>التصنيف</span> : {{product.category.name_ar}}</a></li>
+                        <div class="media-body">
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                        </div>
+                    </ul>
+                    <div class="card_area d-flex align-items-center justify-content-start my-3">                      
+                      <a class="icon_btn" id="copy"><i class="fa fa-share"></i></a>
+                      <a class="icon_btn" href="#"><i class="fa fa-heart"></i></a>
+                  </div>
+                    <p>{{product.description_ar}}</p>
+   
+                    {% if variants %}
+                    <form  method="post" id="form_order_item">
+                      {% csrf_token %}
+                    <div class="row my-3 mx-2">
+                        <div class='col-3'>
+                        <label class="pt-2" for="qty">القياس:</label>
+                        </div>
+                        <div class='col-9'>
+                            <select name="size" id="size_var" class=" mx-2">
+                              </select>  
+                            </div>
+                      </div>
+                      <div class="row my-3 mx-2">
+                        <div class='col-3'>
+                        <label class="pt-2" for="qty">الألوان:</label>
+                        </div>
+                        <div class='col-9' id="color_container">
+          
+                            </div>
+                      </div>
+                      {% endif %}
+                    <div class="card_area d-flex align-items-center">
+                        <a id="add_to_cart" style="
+                        font-size: 14px;
+                        padding: 0 10px;
+                        text-transform: capitalize;" class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}" href="{% url 'card' %}">الشراء الأن</a>
+                      <a  class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}"  href="#"><i class="fa fa-cart-plus " aria-hidden="true"></i>
+                        </a>
+                    </div>
+       
+                  
+                  </form>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+<section class="product_description_area">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+                 aria-selected="false">التعليقات</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+                <div class="row">
+                    <div class="col-lg-6 mb-5">
+                        <div class="review_list my-3">
+                            {% for rate in ratings %}
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img
+                                        {% if rate.user.image %}
+                                        src="{{rate.user.image.url}}"
+                                        {% else %}
+                                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                                        {% endif %}
+                                        
+                                        class="rounded-circle"
+                                        height="35"
+                                        alt="Avatar"
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                    <div class="media-body mx-4" style="text-align:initial;">
+                                        <h4 class="fw-bolder" style="font-weight:bold;margin:0">{{rate.get_user_name}}</h4>
+                                        {% if rate.stars == 5 %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        {% elif rate.stars == 4 %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+
+                                        {% elif rate.stars == 3 %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+
+                                        {% elif rate.stars == 2 %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+
+                                        {% elif rate.stars == 1 %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+
+                                        {% else %}
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        {% endif %}
+                                      
+                                    </div>
+                                </div>
+                                <p class="text-right">{{rate.content}}</p>
+                            </div>
+                            {% endfor %}
+                    <hr>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="review_box">
+                            <h4 style="text-align:initial;">إضافة تعليق</h4>
+                            <div class="rating" >
+                                <input value="5" type="radio" name="rating" id="rating-5">
+                                <label data-rate="5" data-product="{{product.id}}" for="rating-5"></label>
+                                <input value="4" type="radio" name="rating" id="rating-4">
+                                <label data-rate="4" data-product="{{product.id}}" for="rating-4"></label>
+                                <input value="3" type="radio" name="rating" id="rating-3">
+                                <label data-rate="3" data-product="{{product.id}}" for="rating-3"></label>
+                                <input value="2" type="radio" name="rating" id="rating-2">
+                                <label data-rate="2" data-product="{{product.id}}" for="rating-2"></label>
+                                <input value="1" type="radio" name="rating" id="rating-1">
+                                <label data-rate="1" data-product="{{product.id}}" for="rating-1"></label>
+                                  </div>
+
+                            <form class="row contact_form" method="post" >
+                                {% csrf_token %}
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="content" id="content" rows="1" placeholder="تعليق" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                 <button class="primary-btn" id="add_comment">تعليق</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="product-main container py-5">
+
+    <h2 class="title" style="text-align:initial;">منتجات قد تعجبك</h2>
+  
+    <div class="product-grid">
+  {% for product in products  %}
+      <div class="showcase">
+  
+        <div class="showcase-banner">
+  
+          <img src="{{product.image.url}}" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
+          <img src="{{product.image.url}}" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
+  
+          {% if product.status%}
+          <p class="
+          showcase-badge
+          {% if product.status == "promotion" %}
+          angle pink
+          {% elif product.status == "nouvelle" %}
+          angle black
+          {% endif %}
+          ">{{product.status}}</p>
+    {% endif %}
+        </div>
+  
+        <div class="showcase-content">
+  
+          <a href="#" style="text-align:initial;" class="showcase-category">{{product.category.name_ar}}</a>
+  
+          <a href="{% url 'single-product' product.id %}">
+            <h3 style="text-align:initial;" class="showcase-title">{{product.name_ar}}</h3>
+          </a>
+  
+          <div class="showcase-rating">
+            {% if product.avg_rating == 5 %}
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            {% elif product.avg_rating == 4 %}
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star"></i>
+  
+            {% elif product.avg_rating == 3 %}
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+  
+            {% elif product.avg_rating == 2 %}
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+  
+            {% elif product.avg_rating == 1 %}
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            {% else %}
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            {% endif %}
+          </div>
+  
+          <div class="price-box">
+            <p class="price">{{product.price}}DA</p>
+            <del>{{product.price}}DA</del>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  
+  </div>
+  <script>
+    // optimzation css loading 
+
+    </script>
+  <style>
+.color_input {
+  display: none;
+}
+
+.button_color {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.button_color span {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  background: #eeeeee;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  transition: ease .3s;
+}
+
+.button_color span:hover {
+  padding: 10px;
+}
+
+.color_piker .button_color span {
+  background: #FF5722;
+}
+
+  </style>
+  <script src="{% static 'js/vendor/jquery-2.2.4.min.js'%}"></script>
+
+<script type="text/javascript">
+    var code_url="{{config.SITE_URL}}/products/{{product.slug}}/{{request.user.code}}";
+    var copy=document.getElementById('copy');
+   var form_order_item = document.getElementById("form_order_item");
+   var add_to_cart = document.getElementById("add_to_cart");
+   let add_to_cart2 = $(".add_to_cart");
+ var color_list = new Set();
+ var size_list = new Set();
+
+ var color_container=document.getElementById("color_container");
+ var size_var = document.getElementById("size_var");
+{% for variant in variants %}
+color_list.add("{{variant.color}}");
+size_list.add("{{variant.size}}");
+{% endfor %}
+for (const color of color_list) 
+  color_container.innerHTML+=`<input  value="${color}" class='red' name='color' type='radio' style="background:${color};
+  box-sizing: border-box;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #c9c9c9;
+  border-radius: 50%;" />`;
+for (const size of size_list) 
+size_var.innerHTML+=`<option  value="${size}">${size}</option>`
+
+add_to_cart2.click(function(){
+ 
+ try{
+  var color = form_order_item.color.value;
+ }
+catch{
+  var color = undefined;
+}
+try{
+  var size = form_order_item.size.value;
+ }
+catch{
+  var size =  undefined;
+}
+  productId = {{product.id}};
+  if (user == "AnonymousUser") {
+    addCookieItem(productId, "add", color , size);
+    console.log("user is not login");
+  } 
+  else {
+    updateUserOrder(productId , "add" , color , size);
+    console.log("user is logged in");
+  }
+
+   });
+
+function updateUserOrder(productId, action,color,size) {
+let data_send = {};
+if(color == undefined && size == undefined){
+  data_send= { productId: productId, action: action }
+}
+else if(color != undefined && size == undefined){
+  data_send= { productId: productId, action: action,productColor:color }
+
+}
+else if(color == undefined && size != undefined){
+  data_send= { productId: productId, action: action,productSize:size }
+
+}
+else{
+  data_send= { productId: productId, action: action,productSize:size,productColor:color }
+
+}
+    $.ajax({
+      type: "POST",
+      beforeSend: function (request) {
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("X-CSRFToken", csrftoken);
+      },
+      url: "/update_item/",
+      data: JSON.stringify(data_send),
+      processData: true,
+      success: function (msg) {
+        console.log("success" + msg);
+      },
+    });
+    // for display async in cart items without reload page
+    getCartItem();
+  }
+  // update order whene user is not authenticated
+  function addCookieItem(productId, action,color,size) {
+    console.log("User is not authenticated");
+    if (action == "add") {
+   
+      if (cart[productId] == undefined  ) 
+      {
+        cart[productId] = { quantity: 1 , color:color , size : size};
+
+      } 
+      else {
+        for (let i in cart){
+          if (i==productId){
+            console.log("true")
+            if(cart[i]["color"]==color && cart[i]["size"]==size){
+              cart[productId]["quantity"] += 1;
+            }
+            else{
+        cart[productId] = { quantity: 1 , color:color , size : size};
+
+            }
+          }
+        }
+      }
+    }
+    if (action == "remove") {
+      cart[productId]["quantity"] -= 1;
+
+      if (cart[productId]["quantity"] <= 0) {
+        console.log("Item should be deleted");
+        delete cart[productId];
+      }
+    }
+    console.log("CART:", cart);
+    document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+    getCartItem();
+  }
+  const shareBtn=document.getElementById('copy');
+	const title="title";
+	const url=code_url;
+	//const ogBtnContent = shareBtn.textContent;
+	shareBtn.addEventListener('click', () => {
+			if (navigator.share) {
+			  navigator.share({
+				title,
+				url
+			  }).then(() => {
+				
+			  })
+			  .catch(err => {
+				showMessage(shareBtn, `Couldn't share 🙁`);
+			  });
+			} else {
+			  showMessage(shareBtn, 'Not supported 🙅‍');
+			}
+		  });
+		  
+		  function showMessage(element, msg) {
+			element.textContent = msg;
+			setTimeout(() => {
+			  element.textContent = '';
+			}, 2000);
+		  }
+              /* -----script to meal rating-------*/
+              function rate_user() {
+                // place rate user number in localStorage (cookies)
+                const rate = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('rate='))
+                ?.split('=')[1];
+                var content = $("#content").val();
+                var stars = rate;
+                var product_id = $(".rating label").data('product');
+                console.log(stars)
+                let data = {
+                  user_id: user_id,
+                  product_id: product_id,
+                  stars: rate,
+                  content: content,
+                };
+                if (user == "AnonymousUser") {
+                  window.location.href = "/login";
+                } else {
+ 
+                    fetch("/api/product_rating/", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrftoken,
+                      },
+                      body: JSON.stringify(data),
+                    }).then((res) => {
+                      location.reload();
+                      console.log("Request complete! response:", res);
+                    });
+                }
+              }
+              $(".rating label").on("click",function(){
+                console.log(this.dataset.rate)
+                document.cookie = "rate="+this.dataset.rate+"; SameSite=None; Secure";
+                console.log(document.cookie)
+
+     
+              })
+             $("textarea").keyup(function(e){
+                if(e.keyCode == 13)
+                {
+                  rate_user()
+                }
+            });
+            $("#add_comment").click(function () {
+              rate_user()
+            })
+  $(".red").click(function(event){
+    $(".red").removeClass("red_radio_style");
+    $(this).addClass("red_radio_style");
+});
+      
+              /* ----- end script to meal rating-------*/
+    </script>
+<style>
+
+  .red_radio_style{
+    border: 5px solid #ff6c00 !important;
+    border-radius: 50%!important;
+    opacity: 0.5!important;
+  }
+  * { box-sizing: border-box; }
+
+
+    .rating {
+      display: flex;
+      justify-content: flex-end;
+      overflow: hidden;
+      flex-direction: row-reverse;
+      position: relative;
+    }
+    
+    .rating-0 {
+      filter: grayscale(100%);
+    }
+    
+    .rating > input {
+      display: none;
+    }
+    
+    .rating > label {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      margin-top: auto;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23e3e3e3' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 76%;
+      transition: .3s;
+    }
+    
+    .rating > input:checked ~ label,
+    .rating > input:checked ~ label ~ label {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23fcd93a' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+    }
+    
+    
+    .rating > input:not(:checked) ~ label:hover,
+    .rating > input:not(:checked) ~ label:hover ~ label {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23d8b11e' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+    }
+  
+  .red {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 25px;
+    height: 25px;
+    margin: 5px 0 5px 5px;
+    background-size: 225px 70px;
+    position: relative;
+    float: left;
+    display: inline;
+    top: 0;
+    border-radius: 3px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+  }
+  
+ .red:hover{
+    -webkit-filter: opacity(.7);
+    filter: opacity(.7);    
+  }
+
+
+
+    </style>
+{% endblock content %}
+

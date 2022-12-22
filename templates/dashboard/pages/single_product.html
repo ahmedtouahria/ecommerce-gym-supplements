@@ -1,0 +1,101 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content_dashboard %}
+<div class="container">
+<div class="card mx-2">
+    <div class="row">
+ <div class="col col-md-6">
+    <img class="card-img-top m-2" src="{{product.image.url}}"  alt="Title">
+    <div class="card-body">
+        <h4 class="card-title">{{product.name}}</h4>
+    </div>
+ </div>
+ <div class="col col-md-6">
+    <div class="row">
+    <div class="col-6">
+    <div id="generate">
+<br>
+<svg id="barcode"></svg>
+<br>
+</div>
+</div>
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>imprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for variant in variants %}
+        <tr>
+            <td scope="row">{{variant.size}}</td>
+            <td>{{variant.color}}</td>
+            <td> <button onclick='Print("{{variant.color}}","{{variant.size}}","{{variant.barcode_num}}")' type="button" class="btn btn-outline-primary"><i class="fa fa-print" aria-hidden="true"></i></button>
+             </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> <strong>prix d'achat</strong> </th>
+            <th class="text-primary">{{product.price_achat}} DA</th>
+        </tr>
+        <tr>
+            <th> <strong>prix de vente</strong> </th>
+            <th class="text-primary">{{product.price}} DA</th>
+        </tr>
+        <tr>
+            <th> <strong>nombre de ventes</strong> </th>
+            <th class="text-primary">{{product.count_sould}} vendée</th>
+        </tr>
+        <tr>
+            <th> <strong>la quantité en dépôt</strong> </th>
+            <th class="text-primary">{{product.quantity}}</th>
+        </tr>
+        <tr>
+            <th> <strong>étage</strong> </th>
+            <th class="text-primary">{{product.etage}}</th>
+        </tr>
+    </thead>
+</table>
+ </div>
+</div>
+</div>
+</div>
+<style>
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<script>
+/*INITIALSATION JS printer*/
+
+  /* ---- function to print short barcode in tsc printer ----*/
+  function Print(color,size,reference) {
+    JsBarcode("#barcode", "{{product.barcode_num}}", {
+        format: "code128",
+        width: 1,
+        height: 23,
+        fontSize:14,
+        textMargin:8,
+        marginLeft: 25,
+        marginButtom: 10,
+
+        text: `${color}-${size}-${reference}`,
+      });
+    var printContents = document.getElementById("generate").innerHTML;
+    for(let i=0;i<3;i++)
+    printContents+=document.getElementById("generate").innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+</script>
+{% endblock content_dashboard %}

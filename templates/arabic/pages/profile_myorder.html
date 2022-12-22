@@ -1,0 +1,257 @@
+{% extends "arabic/pages/profile_base.html" %}
+{% load static %}
+{% block profile %}
+
+<div class="card">
+
+    <h4 class="p-2 text-info mx-auto">الطلب رقم- {{order.transaction_id}}</h4>
+
+
+    <section class="cart_area py-1 text-right">
+        <div class="container">
+          <div class="cart_inner">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">المنتج</th>
+                    <th scope="col">السعر</th>
+                    <th scope="col">الكمية</th>
+                    <th scope="col">المجموع</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in order_items %}
+      
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <div class="media-body">
+                          <p>{{item.product.name_ar}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5> {{item.product.price}} دج</h5>
+                    </td>
+                    <td>
+                      <div class="product_count ">
+                        <input
+                          readonly
+                          type="text"
+                          name="qty"
+                          id="sst-{{item.product.id}}"
+                          maxlength="2"
+                          value="{{item.quantity}}"
+                          title="Quantity:"
+                          class="input-text qty text-center"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <h5>{{item.get_total}} دج </h5>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                <tr>
+    
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <h5>المجموع الكلي</h5>
+                    </td>
+                    <td>
+                      <h5> {{order.get_cart_total}} دج </h5>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <hr>
+              {% if last_status.last_status == "En préparation" %}
+                <div class="row m-3">
+                <div class="col-6">تعديل الطلب </div>
+                <div class="col-6"> <a href="{% url 'card' %}" id="edit_order" class="btn btn-outline-primary"><i class="fa fa-external-link mx-2" aria-hidden="true"></i></a>
+                </div>
+
+              </div>
+              {% endif %}
+              <hr>
+
+            </div>
+          </div>
+        </div>
+      </section>
+</div>
+<div class="card mb-5 mt-0 text-right">
+  <h4 class="p-2 text-info mx-auto">حالة الطلب</h4>
+{% if last_status.last_status == "En préparation" %}
+  <div class="row ">
+    <div class="col-12 col-md-12 ">
+      <div class="row justify-content-between">
+        <div class="order-tracking completed">
+          <span class="is-complete"></span>
+          <p>تم الإستلام<br></p><span>{{last_status.date_last_status}}</span>
+        </div>
+        <div class="order-tracking ">
+          <span class="is-complete"></span>
+          <p>قيد الشحن <br><span></span></p>
+        </div>
+        <div class="order-tracking">
+          <span class="is-complete"></span>
+          <p>تم التوصيل<br><span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% elif last_status.last_status == "Expédié" %}
+  <div class="row ">
+    <div class="col-12 col-md-12 ">
+      <div class="row justify-content-between">
+        <div class="order-tracking completed">
+          <span class="is-complete"></span>
+          <p>تم الإستلام<br></p><span></span>
+        </div>
+        <div class="order-tracking ">
+          <span class="is-complete"></span>
+          <p>قيد الشحن <br><span>{{last_status.date_last_status}}</span></p>
+        </div>
+        <div class="order-tracking">
+          <span class="is-complete"></span>
+          <p>تم التوصيل<br><span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% elif last_status.last_status == "Livré" %}
+  <div class="row ">
+    <div class="col-12 col-md-12 ">
+      <div class="row justify-content-between">
+        <div class="order-tracking completed">
+          <span class="is-complete"></span>
+          <p>تم الإستلام<br></p><span></span>
+        </div>
+        <div class="order-tracking ">
+          <span class="is-complete"></span>
+          <p>قيد الشحن <br><span></span></p>
+        </div>
+        <div class="order-tracking">
+          <span class="is-complete"></span>
+          <p>تم التوصيل<br><span>{{last_status.date_last_status}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="row ">
+    <div class="col-12 col-md-12 ">
+      <div class="row justify-content-between">
+        <div class="order-tracking ">
+          <span class="is-complete"></span>
+          <p>تم الإستلام<br></p><span></span>
+        </div>
+        <div class="order-tracking ">
+          <span class="is-complete"></span>
+          <p>قيد الشحن <br><span></span></p>
+        </div>
+        <div class="order-tracking">
+          <span class="is-complete"></span>
+          <p>تم التوصيل<br><span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<style>
+
+  .order-tracking{
+    text-align: center;
+    width: 33.33%;
+    position: relative;
+    display: block;
+    background:none;
+  }
+  .order-tracking .is-complete{
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    border: 0px solid #AFAFAF;
+    background-color: #f7be16;
+    margin: 0 auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+    z-index: 1;
+  }
+  .order-tracking .is-complete:after {
+    display: block;
+    position: absolute;
+    content: '';
+    height: 14px;
+    width: 7px;
+    top: -2px;
+    bottom: 0;
+    right: 5px;
+    margin: auto 0;
+    border: 0px solid #AFAFAF;
+    border-width: 0px 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  .order-tracking.completed .is-complete{
+    border-color: #27aa80;
+    border-width: 0px;
+    background-color: #27aa80;
+  }
+  .order-tracking.completed .is-complete:after {
+    border-color: #fff;
+    border-width: 0px 3px 3px 0;
+    width: 7px;
+    right: 11px;
+    opacity: 1;
+  }
+  .order-tracking p {
+    color: #A4A4A4;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    line-height: 20px;
+  }
+  .order-tracking p span{font-size: 14px;}
+  .order-tracking.completed p{color: #000;}
+  .order-tracking::before {
+    content: '';
+    display: block;
+    height: 3px;
+    width: calc(100% - 40px);
+    background-color: #f7be16;
+    top: 13px;
+    position: absolute;
+    right: calc(-50% + 20px);
+    z-index: 0;
+  }
+  .order-tracking:first-child:before{display: none;}
+  .order-tracking.completed:before{background-color: #27aa80;}
+</style>
+<script>
+  edit_order = document.getElementById("edit_order");
+  edit_order.addEventListener("click", function(){
+    دج .ajax({
+      type: "POST",
+      beforeSend: function (request) {
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("X-CSRFToken", csrftoken);
+      },
+      url: "/api/edit_order/",
+      data: JSON.stringify({order_tracking:"{{order.transaction_id}}"}),
+      processData: true,
+      success: function (msg) {
+        console.log("success" + msg);
+        //location.href("/cart")
+      },
+    });
+  })
+ 
+</script>
+{% endblock profile %}

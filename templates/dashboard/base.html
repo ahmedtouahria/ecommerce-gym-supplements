@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'dashboard/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'dashboard/img/favicon.png' %}">
+  <title>
+ Dashboard | {{titel}}
+  </title>
+  <!--     Fonts and icons     -->
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{% static 'dashboard/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'dashboard/css/print.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'dashboard/css/nucleo-svg.css' %}" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- CSS Files -->
+  <link id="pagestyle" href="{% static 'dashboard/css/soft-ui-dashboard.css' %}" rel="stylesheet" />
+</head>
+<body class="g-sidenav-show  bg-gray-100">
+{% include 'dashboard/partes/sidebar.html' %}
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+{% include 'dashboard/partes/navbar.html' %}
+
+{% block content_dashboard %}
+
+{% endblock content_dashboard %}
+{% include 'dashboard/partes/footer.html' %}
+
+</main>
+
+
+
+  <!--   Core JS Files   -->
+  <script src="{% static 'dashboard/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'dashboard/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'dashboard/js/soft-ui-dashboard.min.js' %}"></script>
+  <script>
+    function getToken(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === name + "=") {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    // and we assign to variable csrftoken for post secure data
+    var csrftoken = getToken("csrftoken");
+    // Script Upload images 
+
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+
+
+
+
+</body>

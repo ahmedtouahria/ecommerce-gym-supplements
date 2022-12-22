@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>commande</title>
+    <link
+      rel="stylesheet"
+      rel="preload"
+      href="{% static 'css/bootstrap.min.css'%}"
+    />
+  </head>
+  <style>
+    h1 {
+      text-align: center;
+    }
+    td, th {
+      text-align: center;
+      padding: 8px;
+    }
+    table{
+        border: 0.8px solid #000;
+    }
+    img { zoom: 80%; }
+  </style>
+  <body>
+    <table class="table" width="100%">
+      <thead>
+        <tr style='background:grey'>
+          <th width="10%">commande</th>
+          <th width="20%">client</th>
+          <th>contenu</th>
+          <th width="10%">prix total</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders_arr %}
+        <tr>
+          <td width="10%">#{{order.id}}</td>
+          <td width="20%">{{order.customer.name}} 
+            <hr>
+            {{order.get_customer_phone}}
+          </td>
+          <td>
+            <table width="100%" border="0.8" >
+                <tr style='background:grey'>
+                    <th>produit</th>
+                    <th width="20%">Quantité</th>
+                    <th width="20%">référence</th>
+                    <th width="20%">étagère</th>
+                  </tr>
+                </thead>
+            {% for item in order.orderitem_set.all %} 
+                <tr>
+                    <td> 
+                        <span style="margin:5px; border-radius:50%">
+                        <img src="{{item.product.image.path}}" style="border-radius:50%;margin:5px;" width="50px" height="50px" class="img-fluid rounded-top" alt=""/>
+                        </span>
+                        <span>---</span>
+                        {{item.product.name}}</td>
+                    <td width="20%">{{item.quantity}}</td>
+                    <td width="20%">{{item.product.reference}}</td>
+                    <td width="20%">{{item.product.etage}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+          </td>
+          <td width="10%"> {{order.get_cart_total}} DA</td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <hr>
+    Aya collection 2022
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+  </body>
+</html>

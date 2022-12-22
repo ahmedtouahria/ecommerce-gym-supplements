@@ -1,0 +1,178 @@
+{% extends 'dashboard/base.html' %} {% block content_dashboard %}
+<div class="container-fluid py-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+<div class="row">
+  <div class="col-md-6">
+    <div class="card-header pb-0">
+      <h6>Détails de la commande</h6>
+      <strong>Client</strong> : {{order_id.customer}}
+      <br />
+      <strong>Téléphone</strong> : {{order_id.get_customer_phone}}
+      <br />
+      <strong>Total prix</strong> : {{order_id.get_cart_total}} DA
+    </div>
+
+  </div>
+  <div class="col-md-6">
+    <div class="card-header pb-0">
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="freeshipping">
+      <label class="form-check-label">
+        <strong>livraison gratuite</strong>
+      </label>
+    </div>
+    <div class="form-check ">
+      <input class="form-check-input" type="checkbox" value="" id="has_exchange">
+      <label class="form-check-label">
+        <strong>a des échanges</strong>
+      </label>
+    </div>
+  </div>
+
+  </div>
+</div>
+        <div class="card-body px-0 pt-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Produit
+                  </th>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    couleur et taille
+                  </th>
+
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                  >
+                    Quantité
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Prix
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Total
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for ord in order_items %}
+                <tr>
+                  <td>
+                    <img
+                      src="{{ord.product.image.url}}"
+                      class="avatar avatar-sm me-3"
+                      alt="user1"
+                    />
+                    <span class="text-xs font-weight-bold mb-0"
+                      >{{ord.product.name}}</span
+                    >
+                  </td>
+                  <td>
+                    {% if ord.color %}
+                    <div class="row">
+                      <div class="col-4">
+                        <input
+<input type="color" class="form-controlcouleur de formulaire" style='padding-left:8px !important;border: none !important;' disabled id="exampleColorInput" value="{{ord.color}}" title="Choose your color">
+
+                      </div>
+                      <div class="col-8">
+                        <strong>{{ord.size}}</strong>
+                      </div>
+                    </div>
+
+                    {% endif %}
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">
+                      {{ord.quantity}}
+                    </p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success"
+                      >{{ord.product.price}}</span
+                    >
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold"
+                      >{{ord.get_total}}</span
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% if not order_id.confirmed %}
+      <a id="confirm" class="btn btn-outline-info btn-sm" href="#"
+        ><i class="fa fa-plus-circle mx-2"></i>Confirme
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="{% url "tables" %}"
+        ><i class="fa fa-plus-circle mx-2"></i>Cancel
+      </a>
+      {% else %}
+     la commande est <span class="badge badge-sm bg-gradient-info">confirmé <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+      </span>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+<script>
+  /* Script to send request in yalidin   */
+const confirm = document.getElementById("confirm");
+const freeshipping = document.getElementById("freeshipping");
+const has_exchange = document.getElementById("has_exchange");
+let order_id = {{order_id.id}};
+
+confirm.addEventListener("click",async function(){
+ let data = {"order_id":order_id,"freeshipping":freeshipping.checked,"has_exchange":has_exchange.checked};
+ try {
+  const res = await fetch("/api/send_order/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify(data),
+  }),
+  json = await res.json();
+  location.reload();
+  console.log(json);
+} catch (err) {
+  console.error("error:", err);
+}
+ console.log(data);
+/*   fetch("/api/send_order/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify(data),
+  }).then((res) => {
+    console.log("Request complete! response:", res);
+  })
+  .then((data) => {
+   // location.reload()
+}); */
+
+})
+
+
+</script>
+{% endblock content_dashboard %}

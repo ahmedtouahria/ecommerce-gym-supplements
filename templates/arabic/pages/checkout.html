@@ -1,0 +1,257 @@
+
+{% extends "arabic/base.html" %}
+{% load static %}
+ {% block content %}
+<section class="checkout_area section_gap">
+  <div class="container">
+    {% if messages %}
+{% for message in messages %}
+<div class="alert {{message.tags}}" id="alert">{{message}}</div>
+{% endfor %}
+{% endif %}
+<section class="filters">
+  <ul class="filters-content">
+    <button class="filters__button is-active font-weight-bold " data-target="#desk">
+     <i class="fa fa-building mx-2" style="font-size:18px" aria-hidden="true"></i>
+
+      إلى المكتب
+
+    </button>
+    <button class="filters__button font-weight-bold" data-target="#home">
+  <i class="fa fa-home mx-2" style="font-size:18px" aria-hidden="true"></i>
+    إلى المنزل
+    </button>
+  </ul>
+
+  <div>
+    <div data-content class="is-active" id="desk">
+      <div class="billing_details pt-5">
+        <div class="row">
+          <div class="col-lg-7">
+            <h3 style="text-align:initial;">تفاصيل الشحن</h3>
+            <form id="form" class="row contact_form" method="post" style="text-align:initial;">
+              {% csrf_token %}
+              <div class="col-md-6 form-group p_star">
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  id="first"
+                  placeholder="الإسم الكامل"
+                  name="name"
+                />
+              </div> 
+                <div class="col-md-6 form-group p_star">
+                <input
+                  class="form-control"
+                  placeholder="رقم الهاتف"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  pattern="0[5-7]{1}[0-9]{8}"
+                  required
+                />
+              </div>
+              <div class="col-6 form-group p_star">
+                <select class="custom-select w-75 wilaya" name="wilaya" id="wilaya">
+                </select>
+              </div>
+              
+              <div class="col-6 form-group p_star">
+                <select class="custom-select w-75" name="commun" id="commun">
+                </select>
+              </div>
+              <div class="col-md-12 form-group">
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  id="zip"
+                  name="email"
+                  placeholder="البريد الإلكتروني"
+                />
+              </div>
+              <div 
+              class="col-md-12"
+              style="width: 100%">
+              <button
+              style="width: 200px"
+              class="banner-btn   my-4"
+              type="submit"
+            >
+              إرسال الطلب
+            </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-5">
+            <div class="order_box">
+              <h2 style="text-align:initial" >طلبيتك</h2>
+              <ul class="list">
+                <li>
+                  <a href="#">المجموع <span>المنتج</span></a>
+                </li>
+                {% for item in items %}
+                <li>
+                  
+                    <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                ">  <a style="text-align:initial" href="{% url 'single-product' item.product.id  %}"><strong class="mx-2 text-info">(x{{item.quantity}})</strong> {{item.product.name_ar | slice:':25'}} 
+                  </a>
+                  <span class="last">{{item.get_total}} دج</span>
+                </div>
+                </li>
+                {% endfor %}
+              </ul>
+              <ul class="list list_2">
+                <li class="d-flex align-items-center justify-content-between">
+                  <a href="#">المجموع </a><span>{{order.get_cart_total}} دج</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <a href="#" >الشحن </a><span id='shipping'>0 دج</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <a href="#">المجموع الكلي</a><span id="total_1">{{order.get_cart_total}} دج</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-content id="home" >
+      <div class="billing_details pt-5">
+        <div class="row">
+          <div class="col-lg-7 text-right">
+            <h3>تفاصيل الشحن</h3>
+            <form id="form2" class="row contact_form" method="post">
+              {% csrf_token %}
+              <div class="col-md-6 form-group p_star">
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  id="first"
+                  placeholder="الإسم الكامل"
+                  name="name"
+                />
+              </div> 
+  
+                <div class="col-md-6 form-group p_star">
+                <input
+                  class="form-control"
+                  placeholder="رقم الهاتف"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  pattern="0[5-7]{1}[0-9]{8}"
+                  required
+                />
+              </div>
+              <div class="col-6 form-group p_star">
+                <select class="custom-select w-75 wilaya" name="wilaya" id="wilaya2">
+                </select>
+              </div>
+              
+              <div class="col-6 form-group p_star">
+                <select class="custom-select w-75" name="commun" id="commun2">
+                </select>
+              </div>
+
+              <div class="col-md-12 form-group p_star">
+                <div class="col-md-12 form-group">
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    name="email"
+                    placeholder="البريد الإلكتروني"
+                  />
+                </div>
+              <div class="col-md-12 form-group p_star">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  placeholder="المدينة"
+                  name="city"
+                  required
+                />
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="عنوان المنزل"
+                  name="address"
+                />
+              </div>
+              <div 
+              class="col-md-12"
+              style="width: 100%">
+              <button
+              style="width: 200px"
+              class="banner-btn   my-4"
+              type="submit"
+            >
+              إرسال الطلب
+            </button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+
+          <div class="col-lg-5">
+            <div class="order_box">
+              <h2 style="text-align:initial" >طلبيتك</h2>
+              <ul class="list">
+                <li>
+                  <a href="#">المجموع <span>المنتج</span></a>
+                </li>
+                {% for item in items %}
+                <li>
+                    <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                ">  <a style="text-align:initial" href="{% url 'single-product' item.product.id  %}"><strong class="mx-2 text-info">(x{{item.quantity}})</strong> {{item.product.name_ar | slice:':25'}} 
+                  </a>
+                  <span class="last">{{item.get_total}} دج</span>
+                </div>
+                </li>
+                {% endfor %}
+              </ul>
+              <ul class="list list_2">
+                <li class="d-flex align-items-center justify-content-between">
+                  <a href="#">المجموع </a><span>{{order.get_cart_total}} دج</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <a href="#" >الشحن </a><span id='shipping_home'>0 دج</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <a href="#">المجموع الكلي</a><span id="total_2">{{order.get_cart_total}} دج</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+   
+  </div>
+</section>
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js'%}"></script>
+    <script src="{% static 'js/checkout.js'%}"></script>
+	<script>
+    var total_order = {{order.get_cart_total}};
+  </script>
+{% endblock content %}

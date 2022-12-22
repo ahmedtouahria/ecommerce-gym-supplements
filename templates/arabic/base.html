@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+  <head>
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script>
+      // optimzation css loading
+      $(document).ready(function(){
+      const loading = $("#loading");
+      const body = $("#body_container");
+      loading.addClass("d-none");
+     body.removeClass("d-none");
+        $("select").niceSelect();
+        $(".s_Product_carousel").owlCarousel({
+          items: 1,
+          autoplay: true,
+          autoplayTimeout: 5000,
+          loop: true,
+          nav: false,
+          dots: true,
+        });
+      })
+    </script>
+    <!-- Mobile Specific Meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/media/{{config.LOGO}}" />
+    <!-- Author Meta -->
+{% block SEO %}
+
+{% endblock SEO %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ8JTM3L9E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZZ8JTM3L9E');
+</script>
+    <!-- meta character set -->
+    <meta charset="UTF-8" />
+    <!-- Site Title -->
+    <title>{{config.SITE_NAME}} | {{titel}}</title>
+    <!--===============================CSS============================================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      rel="preload"
+      href="{% static 'css/nice-select.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      rel="preload"
+      href="{% static 'css/bootstrap.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      rel="preload"
+      href="{% static 'css/font-awesome.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/new_style_ar.min.css'%}"
+    />
+    {% block css %} {% endblock css %}
+    <style>
+:root {
+
+    --primary-color:{{config.PRIMARY_COLOR}} ;
+    --minimal-product-color:{{config.MINIMAL_PORODUCT_COLOR}};
+    --category-item-color:{{config.CATEGORY_ITEM_COLOR}};
+    --secondary-color:{{config.SECONDARY_COLOR}};
+}
+    </style>
+  </head>
+  <body style="font-family:Tajawal !important;">
+    {% block sketelon %}
+    {% endblock sketelon %}
+    <div id="body_container" class="d-none">
+      {% include 'arabic/partes/navbar.html' %}
+       {% block content %} {% endblock %} 
+    {% include 'arabic/partes/footer.html' %}
+    </div>
+  
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/nouislider.min.js'%}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <script type="text/javascript">
+      var total = "{{order.get_cart_total}}";
+      var user = "{{request.user}}";
+      var user_id = "{{request.user.id}}";
+      var name = user;
+      var phone = "{{request.user.phone}}";
+      // Function to get TOKENT
+      function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      // and we assign to variable csrftoken for post secure data
+      var csrftoken = getToken("csrftoken");
+      // function to get cookie
+      function getCookie(name) {
+        // Split cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        // Loop through the array elements
+        for (var i = 0; i < cookieArr.length; i++) {
+          var cookiePair = cookieArr[i].split("=");
+          /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+          if (name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+        // Return null if not found
+        return null;
+      }
+      function getCartItem() {
+        
+        $.ajax({
+          url: "/api/cartitemApi/",
+          type: "GET",
+          success: function (res) {
+            console.log(res.cartItem);
+            $(".cartItem").html(res.cartItem);
+          },
+        });
+      }
+      console.log("Cart:", cart);
+      // object cart (container shopping bug user GUEST)
+      var cart = JSON.parse(getCookie("cart"));
+      if (cart == undefined) {
+        cart = {};
+        console.log("Cart Created!", cart);
+        document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+      }
+    </script>
+    <script>
+        //ADD THIS PIECE OF CODE IN YOUR JS OR HTML PAGE UNDER SCRIPT
+      "use strict";
+      $(document).ready(function () {
+        //search .autocomplete
+       let search_nav = $("#search_nav"); // for keyup event
+        let result_nav = $("#result_product ul"); // for append result 
+        let result_product = $("#result_product"); // for shadow style 
+        /* KEYUP EVENT */
+        search_nav.keyup(function (e) {
+          result_nav.html("");
+          let data = $(this).val();
+          if ($.trim(data).length > 0) {
+            $.ajax({
+              url: "/api/products/",
+              type: "GET",
+              data: {
+                search: data,
+              },
+              success: function (res) {
+                // ADD boxshadow style
+                result_product.addClass('shadow-sm p-3 mb-5 bg-white rounded').removeClass('d-none');
+                if(res.length>0){
+                $.each(res, function (key, value) { result_nav.append(
+                    `<li class="d-flex my-2 "><img src="${value.image}" height="30" width="30"><a style="color: black;font-weight: 500; " class="mx-2"href="/products/${value.slug}">${value.name}</a></li>`
+                  );
+                });}
+                else
+                result_nav.append(
+                    `<li class="d-flex my-2"><a style="color: black;font-weight: 500;" class="mx-2">Aucun résultat</a></li>`
+                  );
+              },
+            });
+          }
+          // REMOVE boxshadow style
+          else
+          result_product.removeClass('shadow-sm p-3 mb-5 bg-white rounded').addClass('d-none');
+
+        });
+        const tabs = document.querySelectorAll("[data-target]"),
+        tabContents = document.querySelectorAll("[data-content]");
+        tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+        const target = document.querySelector(tab.dataset.target);
+        tabContents.forEach((tc) => {
+              tc.classList.remove("is-active");
+            });
+        target.classList.add("is-active");
+
+        tabs.forEach((t) => {
+              t.classList.remove("is-active");
+            });
+            tab.classList.add("is-active");
+          });
+        });
+        $(".custom-select").niceSelect("destroy");
+        //--------- script to hundel sidebar for mini devices---------//
+        $("#sidebarCollapse").on("click", function () {
+          $("#sidebar").addClass("active");
+        });
+        $("#sidebarCollapseX").on("click", function () {
+          $("#sidebar").removeClass("active");
+        });
+        $("#sidebarCollapse").on("click", function () {
+          if ($("#sidebar").hasClass("active")) {
+            $(".overlay").addClass("visible");
+            // console.log("it's working!");
+          }
+        });
+        $("#sidebarCollapseX").on("click", function () {
+          $(".overlay").removeClass("visible");
+        });
+        setTimeout(() => {
+          if ($("#alert").length > 0) {
+            $("#alert").fadeOut();
+          }
+        }, 4000);
+        //--------end script to hundel sidebar for mini devices--------//
+
+        //--- END--script realtime filter ----//
+      });
+      //})
+    </script>
+    <script>
+      // mobile menu variables
+      const mobileMenuOpenBtn = document.querySelectorAll(
+        "[data-mobile-menu-open-btn]"
+      );
+      const mobileMenu = document.querySelectorAll("[data-mobile-menu]");
+      const mobileMenuCloseBtn = document.querySelectorAll("[data-mobile-menu-close-btn]");
+      const overlay = document.querySelector("[data-overlay]");
+      for (let i = 0; i < mobileMenuOpenBtn.length; i++) {
+        // mobile menu function
+        const mobileMenuCloseFunc = function () {
+          mobileMenu[i].classList.remove("active");
+          overlay.classList.remove("active");
+        };
+        mobileMenuOpenBtn[i].addEventListener("click", function () {
+        mobileMenu[i].classList.add("active");
+          overlay.classList.add("active");
+        });
+        mobileMenuCloseBtn[i].addEventListener("click", mobileMenuCloseFunc);
+        overlay.addEventListener("click", mobileMenuCloseFunc);
+      }
+      // accordion variables
+      const accordionBtn = document.querySelectorAll("[data-accordion-btn]");
+      const accordion = document.querySelectorAll("[data-accordion]");
+      for (let i = 0; i < accordionBtn.length; i++) {
+        accordionBtn[i].addEventListener("click", function () {
+          const clickedBtn =
+            this.nextElementSibling.classList.contains("active");
+          for (let i = 0; i < accordion.length; i++) {
+            if (clickedBtn) break;
+            if (accordion[i].classList.contains("active")) {
+              accordion[i].classList.remove("active");
+              accordionBtn[i].classList.remove("active");
+            }
+          }
+          this.nextElementSibling.classList.toggle("active");
+          this.classList.toggle("active");
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% block content %}
+{% load socialaccount %}
+<main class="main">
+	<div class="container2">
+		<section class="wrapper">
+			<div class="heading">
+				<h1 class="text text-large">S'identifier</h1>
+				<p class="text text-normal">Déjà identifié ? <span><a href="{% url 'login' %}" class="text text-links">Connexion</a></span>
+				</p>
+			</div>
+			<form name="login" class="form" method="post">
+        {% csrf_token %}
+				<div class="input-control">
+					<label for="email" class="input-label" hidden>Adresse e-mail</label>
+					<input type="email" name="email" class="input-field" placeholder="Adresse e-mail">
+				</div>
+                <div class="input-control">
+					<label for="phone" class="input-label" hidden>Numéro de téléphone</label>
+					<input type="text" name="phone" class="input-field" placeholder="numéro de téléphone">
+				</div>
+				<div class="input-control">
+					<label for="password" class="input-label" hidden>Mot de passe</label>
+					<input type="password" name="password1" class="input-field" placeholder="Mot de passe">
+				</div>
+                <div class="input-control">
+					<label for="password2" class="input-label" hidden>confirmé Mot de passe</label>
+					<input type="password" name="password2" class="input-field" placeholder="confirmé Mot de passe">
+				</div>
+				<div class="input-control">
+					<a href="#" class="text text-links">Forgot Password</a>
+					<input type="submit" name="submit" class="input-submit" value="Connexion">
+				</div>
+			</form>
+			<div class="striped">
+				<span class="striped-line"></span>
+				<span class="striped-text">Ou</span>
+				<span class="striped-line"></span>
+			</div>
+			<div class="method">
+				<div class="method-control">
+					<a href="{% provider_login_url "google" %}" class="method-action">
+            <svg width="24px" class="mx-2" height="32px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="google-icon" transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
+                  <path d="M57.8123233,30.1515267 C57.8123233,27.7263183 57.6155321,25.9565533 57.1896408,24.1212666 L29.4960833,24.1212666 L29.4960833,35.0674653 L45.7515771,35.0674653 C45.4239683,37.7877475 43.6542033,41.8844383 39.7213169,44.6372555 L39.6661883,45.0037254 L48.4223791,51.7870338 L49.0290201,51.8475849 C54.6004021,46.7020943 57.8123233,39.1313952 57.8123233,30.1515267" id="Path" fill="#4285F4"></path>
+                  <path d="M29.4960833,58.9921667 C37.4599129,58.9921667 44.1456164,56.3701671 49.0290201,51.8475849 L39.7213169,44.6372555 C37.2305867,46.3742596 33.887622,47.5868638 29.4960833,47.5868638 C21.6960582,47.5868638 15.0758763,42.4415991 12.7159637,35.3297782 L12.3700541,35.3591501 L3.26524241,42.4054492 L3.14617358,42.736447 C7.9965904,52.3717589 17.959737,58.9921667 29.4960833,58.9921667" id="Path" fill="#34A853"></path>
+                  <path d="M12.7159637,35.3297782 C12.0932812,33.4944915 11.7329116,31.5279353 11.7329116,29.4960833 C11.7329116,27.4640054 12.0932812,25.4976752 12.6832029,23.6623884 L12.6667095,23.2715173 L3.44779955,16.1120237 L3.14617358,16.2554937 C1.14708246,20.2539019 0,24.7439491 0,29.4960833 C0,34.2482175 1.14708246,38.7380388 3.14617358,42.736447 L12.7159637,35.3297782" id="Path" fill="#FBBC05"></path>
+                  <path d="M29.4960833,11.4050769 C35.0347044,11.4050769 38.7707997,13.7975244 40.9011602,15.7968415 L49.2255853,7.66898166 C44.1130815,2.91684746 37.4599129,0 29.4960833,0 C17.959737,0 7.9965904,6.62018183 3.14617358,16.2554937 L12.6832029,23.6623884 C15.0758763,16.5505675 21.6960582,11.4050769 29.4960833,11.4050769" id="Path" fill="#EB4335"></path>
+                </g>
+              </g>
+            </svg>
+						<span>Connecter avec Google</span>
+					</a>
+				</div>
+				<div class="method-control">
+					<a href="{% provider_login_url "facebook" %}" class="method-action">
+						<i class="fa fa-facebook-square mx-2"></i>
+						<span></i>Connecter avec Facebook</span>
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+<style>
+:root {
+    --color-white: #fff;
+    --color-light: #f1f5f9;
+    --color-black: #121212;
+    --color-night: #001632;
+    --color-red: #f44336;
+    --color-blue: #e8841a;
+    --color-gray: #80868b;
+    --color-grayish: #dadce0;
+    --shadow-normal: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.027);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(50, 50, 50, 0.05);
+ }
+  .container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0 2rem;
+    margin: 0 auto;
+ }
+ @media (max-width:450px) {
+  .container2{
+    padding: 0 7px;
+  }
+ }
+  .fa-apple {
+    font-size: 1.65rem;
+    line-height: inherit;
+    margin-right: 0.5rem;
+    color: var(--color-black);
+ }
+  .fa-google {
+    font-size: 1.65rem;
+    line-height: inherit;
+    margin-right: 0.5rem;
+    color: var(--color-red);
+ }
+  .fa-facebook-square {
+    font-size: 1.65rem;
+    line-height: inherit;
+    margin-right: 0.5rem;
+    color: rgb(0, 110, 255);
+ }
+  .text {
+    font-family: inherit;
+    line-height: inherit;
+    text-transform: unset;
+    text-rendering: optimizeLegibility;
+ }
+  .text-large {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-black);
+ }
+  .text-normal {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-black);
+ }
+  .text-links {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-blue);
+ }
+  .text-links:hover {
+    text-decoration: underline;
+ }
+  .main .wrapper {
+    max-width: 28rem;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 2rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.25rem;
+    color: var(--color-black);
+    background: var(--color-white);
+    box-shadow: var(--shadow-large);
+ }
+  .main .wrapper .form {
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+ }
+  .main .wrapper .form .input-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+ }
+  .main .wrapper .form .input-field {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: inherit;
+    width: 100%;
+    height: auto;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    color: var(--color-black);
+    background: var(--color-light);
+    text-transform: unset;
+    text-rendering: optimizeLegibility;
+ }
+  .main .wrapper .form .input-submit {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: inherit;
+    cursor: pointer;
+    min-width: 40%;
+    height: auto;
+    padding: 0.65rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    color: var(--color-white);
+    background: var(--color-blue);
+    box-shadow: var(--shadow-medium);
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+ }
+  .main .wrapper .striped {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+ }
+  .main .wrapper .striped-line {
+    flex: auto;
+    flex-basis: auto;
+    border: none;
+    outline: none;
+    height: 2px;
+    background: var(--color-grayish);
+ }
+  .main .wrapper .striped-text {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: inherit;
+    color: var(--color-black);
+    margin: 0 1rem;
+ }
+  .main .wrapper .method-control {
+    margin-bottom: 1rem;
+ }
+  .main .wrapper .method-action {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 0.35rem 1.25rem;
+    outline: none;
+    border: 2px solid var(--color-grayish);
+    border-radius: 2rem;
+    color: var(--color-black);
+    background: var(--color-white);
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+    transition: all 0.35s ease;
+ }
+  .main .wrapper .method-action:hover {
+    background: var(--color-light);
+ }
+  
+</style>
+{% endblock content %}

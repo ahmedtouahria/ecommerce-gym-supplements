@@ -1,0 +1,242 @@
+{% extends "arabic/base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container my-4">
+  <div class="row ">
+    <div class="col-12">
+ 
+      <!-- Start Best Seller -->
+      <section class="lattest-product-area category-list ">
+        <div class="product-main container pt-5">
+
+          <h2 class="title text-right">المنتجات</h2>
+        
+          <div class="product-grid" id="list_product">
+        {% for product in products  %}
+            <div class="showcase loading ">
+        
+              <div class="showcase-banner">
+        
+                <img src="{{product.image.url}}" alt="Mens Winter Leathers Jackets" width="300" class="product-img default skeleton">
+                <img src="{{product.image.url}}" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover skeleton">
+        
+                {% if product.status%}
+                <p class="
+                showcase-badge
+                {% if product.status == "promotion" %}
+                angle pink
+                {% elif product.status == "nouvelle" %}
+                angle black
+                {% endif %}
+                ">{{product.status}}</p>
+          {% endif %}
+        
+              </div>
+        
+              <div class="showcase-content text-right ">
+        
+                <a href="#" class="showcase-category">{{product.category.name_ar}}</a>
+        
+                <a href="{% url 'single-product' product.slug %}">
+                  <h3 class="showcase-title">{{product.name_ar}}</h3>
+                </a>
+        
+                <div class="showcase-rating">
+                  {% if product.avg_rating == 5 %}
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  {% elif product.avg_rating == 4 %}
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star"></i>
+        
+                  {% elif product.avg_rating == 3 %}
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+        
+                  {% elif product.avg_rating == 2 %}
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+        
+                  {% elif product.avg_rating == 1 %}
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  {% else %}
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  {% endif %}
+                </div>
+        
+                <div class="price-box">
+                  {% if product.price_promo %}
+                  <p class="price">{{product.price_promo}} دج</p>
+                  <del>{{product.price}} DA</del>
+                  {% else %}
+                  <p class="price">{{product.price}} دج</p>
+                  {% endif %}
+                </div>
+        
+              </div>
+        
+            </div>
+            {% endfor %}
+          </div>
+        
+        </div>
+      </section>
+      <!-- End Best Seller -->
+      <!-- Start Filter Bar -->
+      <div class="filter-bar d-flex flex-wrap align-items-center mt-5">
+        <div class="sorting mr-auto">
+          <select>
+            <option value="1">Show 12</option>
+          </select>
+        </div>
+        <div class="pagination ">
+          {% if page.has_previous %}
+          <a href="?page={{page.previous_page_number}}"  class="prev-arrow"
+          ><i class="fa fa-long-arrow-left" aria-hidden="true"></i
+        ></a>
+          {% endif %}
+          {% if page.has_next %}
+          <a href="?page={{page.next_page_number}}" class="next-arrow"
+            ><i class="fa fa-long-arrow-right" aria-hidden="true"></i
+          ></a>
+          {% endif %}
+
+        </div>
+      </div>
+      <!-- End Filter Bar -->
+    </div>
+  </div>
+</div>
+
+<div class="product-main container py-5">
+
+  <h2 class="title">Autres catégories</h2>
+
+  <div class="product-grid">
+{% for product in other_products  %}
+    <div class="showcase loading">
+
+      <div class="showcase-banner ">
+
+        <img src="{{product.image.url}}" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
+        <img src="{{product.image.url}}" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
+{% if product.status%}
+        <p class="
+        showcase-badge
+        {% if product.status == "promotion" %}
+        angle pink
+        {% elif product.status == "nouvelles" %}
+        angle black
+        {% endif %}
+        ">{{product.status}}</p>
+  {% endif %}
+        <div class="showcase-actions">
+
+          <button class="btn-action">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+
+          <button class="btn-action">
+            <ion-icon name="eye-outline"></ion-icon>
+          </button>
+
+          <button class="btn-action">
+            <ion-icon name="repeat-outline"></ion-icon>
+          </button>
+
+          <button class="btn-action update-cart"  data-action="add"
+          data-product="{{product.id}}">
+            <ion-icon name="bag-add-outline"></ion-icon>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="showcase-content text-right">
+
+        <a href="#" class="showcase-category">{{product.category.name_ar}}</a>
+
+        <a href="{% url 'single-product' product.slug %}">
+          <h3 class="showcase-title">{{product.name_ar}}</h3>
+        </a>
+
+        <div class="showcase-rating">
+          {% if product.avg_rating == 5 %}
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          {% elif product.avg_rating == 4 %}
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star"></i>
+
+          {% elif product.avg_rating == 3 %}
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+
+          {% elif product.avg_rating == 2 %}
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+
+          {% elif product.avg_rating == 1 %}
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          {% else %}
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          {% endif %}
+        </div>
+
+        <div class="price-box">
+          <p class="price">{{product.price}} دج</p>
+          <del>{{product.price}} دج</del>
+        </div>
+
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+<!-- Start related-product Area -->
+
+{% endblock %}

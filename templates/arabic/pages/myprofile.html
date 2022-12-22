@@ -1,0 +1,114 @@
+{% extends "arabic/pages/profile_base.html" %} {% load static %} {% block profile %}{% load account %}
+<div class="card">
+  <div class="card-body">
+    <div class=" image_mobile mx-auto mb-3 justify-content-center text-right ">
+      <img
+        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+        alt="Admin"
+        class="rounded-circle p-1 bg-warning mx-auto d-block skeleton"
+        width="110"
+    />
+    
+  <h4 class="my-3">{{request.user}}</h4>
+  </div>
+  <form  method="post">
+    {% csrf_token %}
+    <div class="row mb-3">
+      <div class="col-sm-3">
+        <h6 class="mt-2 text-right">الإسم الكامل</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        <input  name="name" type="text" class="form-control" value="{{request.user.name}}" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-3">
+        <h6 class="mt-2 text-right">رقم الهاتف</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        <input
+        name="phone"
+          type="text"
+          class="form-control"
+          value="{{request.user.phone}}"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-3">
+        <h6 class="mt-2 text-right">البريد الإلكتروني</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        <input
+          type="text"
+          class="form-control"
+          value="{{request.user.email}}"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-3">
+        <h6 class="mt-2 text-right">الرمز</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        <input
+          type="text"
+          class="form-control"
+          value="{{request.user.code}}"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9 text-secondary text-right">
+        <input
+          type="submit"
+          class="btnprofile btn btn-warning text-light px-4"
+          value="حفظ"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card mt-1">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6 my-3 text-right">
+            <h3 class="text-success">
+              الأرباح
+              <i class="fa fa-line-chart mx-2" aria-hidden="true"></i>
+            </h3>
+            <p class="text-secondary h4">{{money.money | default:"0"}} دج</p>
+          </div>
+          <div class="col-sm-6 my-3 text-right">
+            <h3>النقاط</h3>
+            <p class="h4">{{request.user.point | default:"0"}} ن</p>
+            <div class="progress mt-3">
+              <div
+                class="progress-bar bg-success"
+                role="progressbar"
+                style="width: {{request.user.point}}%"
+                aria-valuenow="25"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  @media (min-width:1020px) {
+    .image_mobile{
+      display:none;
+    }
+  }
+</style>
+{% endblock profile %}

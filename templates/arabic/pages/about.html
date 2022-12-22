@@ -1,0 +1,33 @@
+{% extends 'arabic/base.html' %} 
+{% block content %}
+<section class="contact_area section_gap_bottom my-4">
+    <div class="container">
+  
+        <div class="row text-right">
+            <div class="col-lg-5 py-2">
+                <h2 class="mb-5">معلومات الإتصال</h2>
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="lnr lnr-home"></i>
+                        <h6>{{config.address}}</h6>
+                        <p>{{config.address2}}</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-phone-handset"></i>
+                        <h6><a href="#">{{config.CONTACT_NUMBER}}</a></h6>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-envelope"></i>
+                        <h6><a href="#">{{config.SITE_MAIL}}</a></h6>
+                        <p>أرسل لنا رسالتك</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 py-2">
+               <h2 class="mb-5">عن {{config.SITE_NAME}}</h2>
+               <p>{{config.ABOUT}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

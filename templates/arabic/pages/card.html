@@ -1,0 +1,207 @@
+{% extends 'arabic/base.html' %} {% block content %}
+
+<section class="cart_area">
+  <div class="container">
+
+    <h2 class="pb-4" style="text-align:initial;">طلبيتك</h2>
+    
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr style="text-align:initial;">
+              <th scope="col">المنتج</th>
+              <th scope="col">السعر</th>
+              <th scope="col">الكمية</th>
+              <th scope="col">المجموع</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %}
+            <tr id="row-{{item.id}}">
+              <td style="text-align:initial;">
+                <div class="media">
+                  <div class="media-body">
+                    <div class="media-body">
+                      <img src="{{item.product.image.url}}" width="50" />
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td style="text-align:initial;">
+                <h5> <span id="price-{{item.id}}">{{item.product.price}}</span> دج</h5>
+              </td>
+              <td style="text-align:initial;">
+                <div class="product_count" dir="ltr">
+                  <input
+                    readonly
+                    type="text"
+                    name="qty"
+                    id="sst-{{item.id}}"
+                    maxlength="2"
+                    value="{{item.quantity}}"
+                    title="Quantity:"
+                    class="input-text qty"
+                  />
+                  <button
+                    onclick=" if (user!='AnonymousUser'){updateUserOrder({{item.product.id}}, 'add','{{item.color}}','{{item.size}}','{{item.id}}')}else {addCookieItem({{item.product.id}}, 'add','{{item.color}}','{{item.size}}',{{item.id}})};var result = document.getElementById('sst-{{item.id}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                    class="increase items-count"
+                    type="button"
+                  >
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+
+
+                  </button>
+                  <button
+                  onclick=" if (user!='AnonymousUser'){updateUserOrder({{item.product.id}}, 'remove','{{item.color}}','{{item.size}}','{{item.id}}')}else {addCookieItem({{item.product.id}}, 'remove','{{item.color}}','{{item.size}}',{{item.id}})};var result = document.getElementById('sst-{{item.id}}'); var sst = result.value; if( !isNaN( sst )) result.value--;return false;"
+                  class="reduced items-count"
+                  type="button"
+                  >
+                  <i class="fa fa-chevron-down" aria-hidden="true"></i>
+
+
+                  </button>
+                </div>
+              </td>
+              <td style="text-align:initial;">
+                <strong class="text-info" id="total-item-{{item.id}}"><span class="item_get_total" id="result_items-{{item.id}}">{{item.get_total}}</span>  دج</strong>
+              </td>
+            </tr>
+            {% endfor %}
+            <tr > 
+              <td style="text-align:initial;">
+
+                <h5>المجموع الكلي</h5>
+
+              </td>
+              <td></td>
+              <td>
+              </td>
+              <td style="text-align:initial;">
+                <strong class="text-info" > <span id="global_result">{{order.get_cart_total}}</span> دج</strong>
+              </td>
+            </tr>
+            {% if items %}
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+              </td>
+            </tr>{% endif %}
+          </tbody>
+        </table>
+        {% if order.get_cart_total %}
+          <div class="checkout_btn_inner d-flex w-100">
+        <a class="primary-btn font-weight-bold" href="{% url 'checkout' %}"> إتمام  <i class="fa fa-fas fa-arrow-left mx-1"></i> </a>  
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  
+</section>
+<script>
+    function renderTotalPrice(quantity,price){
+    return quantity*price;
+    }
+    function prepareCart(productId, action,color,size,id_parent,quantity){
+      if (action == "add") {
+        // count quantity for get realtime quantity value ;
+        quantity++;
+        if (cart[productId] == undefined  ) 
+        {
+          cart[productId] = { quantity: 1 , color:color , size : size};
+  
+        } 
+        else {
+          for (let i in cart){
+            if (i==productId){
+              console.log("true")
+              if(cart[i]["color"]==color && cart[i]["size"]==size){
+                cart[productId]["quantity"] += 1;
+              }
+              else{
+          cart[productId] = { quantity: 1 , color:color , size : size};
+  
+              }
+            }
+          }
+  
+        }
+      }
+      else if (action == "remove") {
+        quantity--;
+        cart[productId]["quantity"] -= 1;
+  
+        if (cart[productId]["quantity"] <= 0) {
+          console.log("Item should be deleted");
+          delete cart[productId];
+          document.getElementById(`row-${id_parent}`).remove();
+
+        }
+      }
+      return quantity;
+    }
+    // update order whene user is not authenticated
+    function addCookieItem(productId, action,color,size,id_parent) {
+      // get price , quantity , result_items value for calculate total on realtime 
+      let price = parseInt(document.getElementById("price-"+id_parent.toString()).innerHTML);
+      let result_items = document.getElementById("result_items-"+id_parent.toString());
+      let quantity = parseInt(document.getElementById("sst-"+id_parent.toString()).value);
+      quantity = prepareCart(productId, action,color,size,id_parent,quantity);
+      // render get_total with help function
+      result_items.innerHTML=renderTotalPrice(quantity,price);
+      /************* this logic to render async items to current cart  **************/
+      // global_result for display subtotal result 
+      let global_result = document.getElementById('global_result');
+      // item_array combine all get_total in array for calculate totale
+      let item_array = Array.from(document.getElementsByClassName('item_get_total'));
+      // sum_items_result_array for calculate totale from item_array
+      let sum_items_result_array=[];
+      for (let i=0;i<item_array.length;i++){
+        sum_items_result_array.push( parseInt(item_array[i].innerHTML) )
+      }
+      // reduce((a, b) => a + b, 0) -> calculate sum array 
+      global_result.innerHTML=sum_items_result_array.reduce((a, b) => a + b, 0);
+      //console.log("CART:", cart);
+      document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+      getCartItem();
+
+    }
+/**************** for authenticated user *****************/
+    function updateUserOrder(productId, action,color,size,id_parent) {
+      /* ************** data for Product or product variante logic *********** */
+      let data_send = {};
+      if(color == "None"  && size == "None" )      data_send= { productId: productId, action: action }
+      else if(color != "None"  && size == "None" ) data_send= { productId: productId, action: action,productColor:color }
+      else if(color == "None"  && size != "None" ) data_send= { productId: productId, action: action,productSize:size }
+      else  data_send= { productId: productId, action: action,productSize:size,productColor:color }
+      /***** send request to update items if user is authenticated *********/
+          $.ajax({
+            type: "POST",
+            beforeSend: function (request) {
+              request.setRequestHeader("Content-Type", "application/json");
+              request.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            url: "/update_item/",
+            data: JSON.stringify(data_send),
+            processData: true,
+            success: function (msg) {
+              if(msg["total"] >0){
+              let result_id = document.getElementById("total-item-"+msg["id"].toString());
+                result_id.innerHTML=`${msg["total"]} دج`
+              }
+              else{
+              document.getElementById(`row-${id_parent}`).remove();
+              }
+              let global_result = document.getElementById('global_result');
+              global_result.innerHTML=`${msg["global_total"]}`
+            },
+          });
+          // for display async in cart items without reload page
+          getCartItem();
+        }
+</script>
+{% endblock content %}

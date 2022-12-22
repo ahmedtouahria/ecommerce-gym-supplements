@@ -1,0 +1,389 @@
+
+{% if message == 'Veuillez configurer Google analytics pour voir le dashboard' %}
+
+{% load static %}
+<div class="el-card box-card is-always-shadow" style="display: flex ; flex-direction: column">
+            <h1 style="display: flex !important ; justify-content: center; text-align: center;">Hello</h1>
+            <img style="display: flex ; justify-content: center; max-width: 500px; margin: auto;" src="{% static 'admin/simpleui-x/img/no_analytics.png' %}" alt="">
+            <h1 style="display: flex !important ; justify-content: center; text-align: center;">{{message}}</h1>
+</div>
+
+{% else %}
+  <div class="info-card el-row">
+    <div class="el-card__body">
+      {% load i18n %}
+      {% autoescape off %}
+<style media="screen">
+  .el-card box-card is-always-shadow{
+    background: white !important;
+    border-radius: 1rem !important;
+    padding: 2% !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16) !important;
+  }
+</style>
+      <script>
+      (function(w,d,s,g,js,fs){
+        g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+        js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+        js.src='https://apis.google.com/js/platform.js';
+        fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+      }(window,document,'script'));
+      </script>
+
+      <!-- this is just to make the view selector work, no need to display it -->
+      <div id="view-selector" style="display: none" ></div>
+      <select id="analytics-timedelta" class="form-select">
+                  <option value="15">{% trans '15 derniers jours' %}</option>
+                  <option value="30">{% trans '30 derniers jours' %}</option>
+                  <option value="90">{% trans '90 derniers jours' %}</option>
+                  <option value="365">{% trans 'Dernière année' %}</option>
+      </select>
+      <div class="span6" style="margin: auto">
+        <div class="quick-wrap" style="display: flex; max-height: 100px;">
+          <div class="" style="flex: 8;width: 200px">
+            <h3 style="font-size: small; color: gray; margin-bottom: 0px !important"> Utilisateurs </h3>
+            <div class="" style="display: inline-flex;">
+            <h1 class="card-name" id="kpi-users" style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+            <h1 style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+            </div>
+            <h3 class="card-name" id="kpi-users-evolution" style="margin-bottom: 0px; margin-top: 0px ;font-size: small; color: green !important;"></h3>
+          </div>
+          <div class="" style="flex: 2; margin: auto">
+            <span class="icon fas fa-users"></span>
+          </div>
+        </div>
+        <div class="quick-wrap" style="display: flex; max-height: 100px;">
+          <div class="" style="flex: 8;width: 200px">
+            <h3 style="font-size: small; color: gray; margin-bottom: 0px"> Nouveaux utilisateurs </h3>
+            <div class="" style="display: inline-flex;">
+            <h1 class="card-name" id="kpi-newusers" style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+            <h1 style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+            </div>
+            <h3 class="card-name" id="kpi-newusers-evolution" style="margin-bottom: 0px; margin-top: 0px ;font-size: small; color: green !important;"></h3>
+          </div>
+          <div class="" style="flex: 2; margin: auto">
+            <span class="icon fas fa-child"></span>
+          </div>
+        </div>
+        <div class="quick-wrap" style="display: flex; max-height: 100px;">
+          <div class="" style="flex: 8;width: 200px">
+            <h3 style="font-size: small; color: gray; margin-bottom: 0px; margin-top: 10px"> Taux de rebond </h3>
+            <div class="" style="display: inline-flex;">
+              <h1 class="card-name" id="kpi-bounce" style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+              <h1 style="font-size: xx-large;margin: 0; overflow: inherit;">%</h1>
+            </div>
+            <h3 class="card-name" id="kpi-bounce-evolution" style="margin-bottom: 0px; margin-top: 0px ;font-size: small; color: green !important;"></h3>
+          </div>
+          <div class="" style="flex: 2; margin: auto">
+            <span class="icon fas fa-skull-crossbones"></span>
+          </div>
+        </div>
+        <div class="quick-wrap" style="display: flex; max-height: 100px;">
+          <div class="" style="flex: 8;width: 200px">
+            <h3 style="font-size: small; color: gray; margin-bottom: 0px"> Pages par session </h3>
+            <div class="" style="display: inline-flex;">
+              <h1 class="card-name" id="kpi-pageviewsPerSession" style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+              <h1 style="font-size: xx-large;margin: 0; overflow: inherit;"></h1>
+            </div>
+            <h3 class="card-name" id="kpi-pageviewsPerSession-evolution" style="margin-bottom: 0px; margin-top: 0px ;font-size: small; color: green !important;"></h3>
+          </div>
+          <div class="" style="flex: 2; margin: auto">
+            <span class="icon fas fa-eye"></span>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+      <div class="el-card box-card is-always-shadow" style="flex:1">
+
+              <section class="panel">
+                  <h1>{% trans 'Trafique' %}</h1>
+                  <h2>{% trans 'Sessions utilisateurs ' %}</h2>
+                  <div id="chart-1-container"></div>
+              </section>
+
+      </div>
+
+      <div class="span6" style="margin: auto; width: 100%">
+        <div class="el-card box-card is-always-shadow" style="flex:1">
+
+              <section class="panel">
+                  <h1>{% trans 'Top 7 pages' %}</h1>
+                  <h2>{% trans 'Vues de pages' %}</h2>
+                  <div id="chart-2-container"></div>
+              </section>
+
+        </div>
+        <div class="el-card box-card is-always-shadow" style="flex:1">
+
+              <section class="panel">
+                  <h1>{% trans 'Top 7 appareils' %}</h1>
+                  <h2>{% trans 'les systèmes les plus utilisés' %}</h2>
+                  <div id="chart-3-container"></div>
+              </section>
+
+        </div>
+      </div>
+      <div class="el-card box-card is-always-shadow" style="flex:1">
+
+            <section class="panel">
+                <h1>{% trans 'Audience' %}</h1>
+                <h2>{% trans 'Top des pays' %}</h2>
+                <div id="chart-5-container"></div>
+            </section>
+
+      </div>
+        <div class="el-card box-card is-always-shadow" style="flex:1">
+
+              <section class="panel">
+                  <h1>{% trans 'Regions' %}</h1>
+                  <h2>{% trans 'Top des régions' %}</h2>
+                  <div id="chart-9-container"></div>
+              </section>
+
+        </div>
+          <div class="span6" style="margin: auto; width: 100%">
+            <div class="el-card box-card is-always-shadow" style="flex:1">
+
+                  <section class="panel">
+                      <h1>{% trans 'Acquisition' %}</h1>
+                      <h2>{% trans 'Sources de visiteurs' %}</h2>
+                      <div id="chart-4-container"></div>
+                  </section>
+
+            </div>
+            <div class="el-card box-card is-always-shadow" style="flex:1">
+
+                  <section class="panel">
+                      <h1>{% trans 'Utilisateurs' %}</h1>
+                      <h2>{% trans 'Nouveaux vs Connues' %}</h2>
+                      <div id="chart-7-container"></div>
+                  </section>
+
+            </div>
+          </div>
+          <div class="el-card box-card is-always-shadow" style="flex:1">
+                <section class="panel">
+                    <h1>{% trans 'Rebond' %}</h1>
+                    <h2>{% trans 'Taux de rebond par page ' %}</h2>
+                    <div id="chart-6-container"></div>
+                </section>
+          </div>
+
+
+
+      <script>
+
+      gapi.analytics.ready(function() {
+
+          gapi.analytics.auth.authorize({
+              'serverAuth': {
+                  'access_token': '{{ token }}'
+              }
+          });
+
+          var viewSelector = new gapi.analytics.ViewSelector({
+            container: 'view-selector'
+          });
+          viewSelector.on('change', function(ids) {
+          console.log(ids);
+          });
+          viewSelector.execute();
+          function query_visualize(timer="15"){
+
+
+             function kpiVisialisation(metric, id_kpi, id_evolution, date) {
+               gapi.client.analytics.data.ga.get({
+                 'ids':  'ga:{{ view_id }}',
+                 'start-date': date+"daysAgo",
+                 'end-date': 'today',
+                 'metrics': metric,
+                 'dimensions': 'ga:date'
+               })
+               .then(function(response) {
+                 var formattedJson = JSON.parse(response.result.totalsForAllResults[metric]);
+                 var kpi = formattedJson;
+                 document.getElementById(id_kpi).innerHTML = kpi.toFixed(2);
+                 function evolution(date){
+                 gapi.client.analytics.data.ga.get({
+                   'ids':  'ga:{{ view_id }}',
+                   'start-date': (2*date)+"daysAgo",
+                   'end-date': date+"daysAgo",
+                   'metrics': metric,
+                   'dimensions': 'ga:date'
+                 })
+                 .then(function(response) {
+                   var formattedJson = JSON.parse(response.result.totalsForAllResults[metric]);
+                   var evolution_calc = ((kpi - formattedJson) / formattedJson)* 100;
+                   document.getElementById(id_evolution).innerHTML = evolution_calc.toFixed(2) + "%";
+                 })
+                 }
+                 evolution(timer);
+               });
+             };
+
+
+             function piechart( id, metrics, dimensions, sort, date) {
+               var pie = new gapi.analytics.googleCharts.DataChart({
+                   query: {
+                       'ids': 'ga:{{ view_id }}',
+                       'start-date': date+"daysAgo",
+                       'end-date': 'today',
+                       'metrics': metrics,
+                       'dimensions': dimensions,
+                       'sort': sort,
+                       'max-results': 10
+                   },
+                   chart: {
+                       'container': id,
+                       'type': 'PIE',
+                       'options': {
+                           'width': '100%',
+                           'pieSliceText': 'none',
+                           'pieHole': 0.8,
+                           'animation':{
+                             'duration': 1000,
+                             'easing': 'out',
+                             'startup': true,
+                             'curveType': 'function',},
+                             'colors': ['#447eff', '#ff44db', '#ffc544', '#f3b49f', '#44ff67', '#7a44ff', '#ff446b', '#c9ff44'],
+                       }
+                   }
+               });
+               pie.execute();
+             };
+             function linechart( id, metrics, dimensions, date) {
+               var line = new gapi.analytics.googleCharts.DataChart({
+                   query: {
+                       'ids': 'ga:{{ view_id }}',
+                       'start-date': date+"daysAgo",
+                       'end-date': 'today',
+                       'metrics': metrics,
+                       'dimensions': dimensions,
+                   },
+                   chart: {
+                       'container': id,
+                       'type': 'LINE',
+                       'options': {
+                           'width': '100%',
+                           'colors': ['#447eff', '#ff44db', '#ffc544', '#f3b49f', '#44ff67', '#7a44ff', '#ff446b', '#c9ff44'],
+                           'lineWidth': 1.5,
+                           'pointSize': 2,
+                           'animation':{
+                             'duration': 1000,
+                             'easing': 'out',
+                             'startup': true,
+                           },
+                       }
+                   }
+               });
+               line.execute();
+             };
+             function geochart( id, metrics, dimensions, sort, date) {
+               var geo = new gapi.analytics.googleCharts.DataChart({
+                   query: {
+                       'ids': 'ga:{{ view_id }}',
+                       'start-date': date+"daysAgo",
+                       'end-date': 'today',
+                       'metrics': metrics,
+                       'dimensions': dimensions,
+                       'max-results': 10
+                   },
+                   chart: {
+                       'container': id,
+                       'type': 'GEO',
+                       'options': {
+                           'width': '100%',
+                           'animation':{
+                             'duration': 1000,
+                             'easing': 'out',
+                             'startup': true,
+                             'curveType': 'function',},
+                             'colors': ['#447eff', '#ff44db', '#ffc544', '#f3b49f', '#44ff67', '#7a44ff', '#ff446b', '#c9ff44'],
+                       }
+               }});
+               geo.execute();
+             };
+             function columnschart( id, metrics, dimensions, sort, date) {
+               var column = new gapi.analytics.googleCharts.DataChart({
+                   query: {
+                       'ids': 'ga:{{ view_id }}',
+                       'start-date': date+"daysAgo",
+                       'end-date': 'today',
+                       'metrics': metrics,
+                       'dimensions': dimensions,
+                       'sort': sort,
+                       'max-results': 10
+                   },
+                   chart: {
+                       'container': id,
+                       'type': 'COLUMN',
+                       'options': {
+                           'width': '100%',
+                           'animation':{
+                             'duration': 1000,
+                             'easing': 'out',
+                             'startup': true,
+                             'curveType': 'function',},
+                           'colors': ['#447eff', '#ff44db', '#ffc544', '#f3b49f', '#44ff67', '#7a44ff', '#ff446b', '#c9ff44'],
+                       }
+               }});
+               column.execute();
+             };
+             function tablechart( id, metrics, dimensions, sort, date) {
+               var table = new gapi.analytics.googleCharts.DataChart({
+                   query: {
+                       'ids': 'ga:{{ view_id }}',
+                       'start-date': date+"daysAgo",
+                       'end-date': 'today',
+                       'metrics': metrics,
+                       'dimensions': dimensions,
+                       'sort': sort,
+                       'max-results': 10
+                   },
+                   chart: {
+                       'container': id,
+                       'type': 'TABLE',
+                       'options': {
+                           'width': '100%',
+                           'pieHole': 0.8,
+                           'animation':{
+                             'duration': 1000,
+                             'easing': 'out',
+                             'startup': true,
+                             'curveType': 'function',},
+                           'colors': ['#447eff', '#ff44db', '#ffc544', '#f3b49f', '#44ff67', '#7a44ff', '#ff446b', '#c9ff44'],
+                       }
+               }});
+               table.execute();
+             };
+             kpiVisialisation('ga:users', 'kpi-users', 'kpi-users-evolution', timer);
+             kpiVisialisation('ga:newUsers', 'kpi-newusers', 'kpi-newusers-evolution', timer);
+             kpiVisialisation('ga:bounceRate', 'kpi-bounce', 'kpi-bounce-evolution', timer);
+             kpiVisialisation('ga:pageviewsPerSession', 'kpi-pageviewsPerSession', 'kpi-pageviewsPerSession-evolution', timer);
+             piechart('chart-7-container', 'ga:users', 'ga:userType', '-ga:userType', timer);
+             piechart('chart-4-container', 'ga:sessions', 'ga:source', '-ga:sessions', timer);
+             piechart('chart-2-container', 'ga:pageviews', 'ga:pagePath', '-ga:pageviews', timer);
+             piechart('chart-3-container', 'ga:sessions', 'ga:operatingSystem', '-ga:operatingSystem', timer);
+             linechart('chart-1-container', 'ga:users,ga:sessions', 'ga:date', timer);
+             geochart('chart-5-container', 'ga:sessions', 'ga:country', '-ga:sessions', timer);
+             columnschart('chart-6-container', 'ga:bounceRate', 'ga:pagePath', '-ga:bounceRate', timer)
+             tablechart('chart-9-container', 'ga:users', 'ga:region', '-ga:users', timer)
+
+          };
+          query_visualize();
+          document.getElementById('analytics-timedelta').addEventListener('change', function() {
+          var time = this.value;
+          query_visualize(time)
+          });
+      });
+      </script>
+
+  {% endautoescape %}
+</div>
+</div>
+
+{% endif %}

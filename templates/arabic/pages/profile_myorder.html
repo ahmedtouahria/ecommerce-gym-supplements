@@ -4,7 +4,7 @@
 
 <div class="card">
 
-    <h4 class="p-2 text-info mx-auto">الطلب رقم- {{order.transaction_id}}</h4>
+    <h4 class="p-2 text-info mx-auto">Demande n °- {{order.transaction_id}}</h4>
 
 
     <section class="cart_area py-1 text-right">
@@ -14,10 +14,10 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">المنتج</th>
-                    <th scope="col">السعر</th>
-                    <th scope="col">الكمية</th>
-                    <th scope="col">المجموع</th>
+                    <th scope="col">le produit</th>
+                    <th scope="col">le prix</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">le total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                       </div>
                     </td>
                     <td>
-                      <h5> {{item.product.price}} دج</h5>
+                      <h5> {{item.product.price}} DA</h5>
                     </td>
                     <td>
                       <div class="product_count ">
@@ -58,10 +58,10 @@
                     <td></td>
                     <td></td>
                     <td>
-                      <h5>المجموع الكلي</h5>
+                      <h5>Le total total </h5>
                     </td>
                     <td>
-                      <h5> {{order.get_cart_total}} دج </h5>
+                      <h5> {{order.get_cart_total}} DA </h5>
                     </td>
                   </tr>
                 </tbody>
@@ -69,7 +69,7 @@
               <hr>
               {% if last_status.last_status == "En préparation" %}
                 <div class="row m-3">
-                <div class="col-6">تعديل الطلب </div>
+                <div class="col-6">Modification préalable</div>
                 <div class="col-6"> <a href="{% url 'card' %}" id="edit_order" class="btn btn-outline-primary"><i class="fa fa-external-link mx-2" aria-hidden="true"></i></a>
                 </div>
 
@@ -83,22 +83,22 @@
       </section>
 </div>
 <div class="card mb-5 mt-0 text-right">
-  <h4 class="p-2 text-info mx-auto">حالة الطلب</h4>
+  <h4 class="p-2 text-info mx-auto">Le statut de demande </h4>
 {% if last_status.last_status == "En préparation" %}
   <div class="row ">
     <div class="col-12 col-md-12 ">
       <div class="row justify-content-between">
         <div class="order-tracking completed">
           <span class="is-complete"></span>
-          <p>تم الإستلام<br></p><span>{{last_status.date_last_status}}</span>
+          <p>Reçu <br></p><span>{{last_status.date_last_status}}</span>
         </div>
         <div class="order-tracking ">
           <span class="is-complete"></span>
-          <p>قيد الشحن <br><span></span></p>
+          <p>Recharger<br><span></span></p>
         </div>
         <div class="order-tracking">
           <span class="is-complete"></span>
-          <p>تم التوصيل<br><span></span></p>
+          <p>Livraison  <br><span></span></p>
         </div>
       </div>
     </div>
@@ -109,15 +109,15 @@
       <div class="row justify-content-between">
         <div class="order-tracking completed">
           <span class="is-complete"></span>
-          <p>تم الإستلام<br></p><span></span>
+          <p>Reçu <br></p><span></span>
         </div>
         <div class="order-tracking ">
           <span class="is-complete"></span>
-          <p>قيد الشحن <br><span>{{last_status.date_last_status}}</span></p>
+          <p>Recharger<br><span>{{last_status.date_last_status}}</span></p>
         </div>
         <div class="order-tracking">
           <span class="is-complete"></span>
-          <p>تم التوصيل<br><span></span></p>
+          <p>Livraison <br><span></span></p>
         </div>
       </div>
     </div>
@@ -128,15 +128,15 @@
       <div class="row justify-content-between">
         <div class="order-tracking completed">
           <span class="is-complete"></span>
-          <p>تم الإستلام<br></p><span></span>
+          <p>Reçu <br></p><span></span>
         </div>
         <div class="order-tracking ">
           <span class="is-complete"></span>
-          <p>قيد الشحن <br><span></span></p>
+          <p>Recharger<br><span></span></p>
         </div>
         <div class="order-tracking">
           <span class="is-complete"></span>
-          <p>تم التوصيل<br><span>{{last_status.date_last_status}}</span></p>
+          <p>Livraison <br><span>{{last_status.date_last_status}}</span></p>
         </div>
       </div>
     </div>
@@ -147,15 +147,15 @@
       <div class="row justify-content-between">
         <div class="order-tracking ">
           <span class="is-complete"></span>
-          <p>تم الإستلام<br></p><span></span>
+          <p>Reçu <br></p><span></span>
         </div>
         <div class="order-tracking ">
           <span class="is-complete"></span>
-          <p>قيد الشحن <br><span></span></p>
+          <p>Recharger<br><span></span></p>
         </div>
         <div class="order-tracking">
           <span class="is-complete"></span>
-          <p>تم التوصيل<br><span></span></p>
+          <p>Livraison <br><span></span></p>
         </div>
       </div>
     </div>

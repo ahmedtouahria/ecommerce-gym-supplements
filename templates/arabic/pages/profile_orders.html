@@ -1,16 +1,16 @@
 {% extends "arabic/pages/profile_base.html" %}
 {% load static %}
 {% block profile %}
-<div class="card text-right">
-<h3 class="p-2">طلبياتك</h3>
+<div class="card text-left">
+<h3 class="p-2">Vos commandes</h3>
 
     <table class="table ">
         <thead class="thead-dark mx-2">
           <tr>
-            <th scope="col">الطلب 
+            <th scope="col">la demande 
             </th>
-            <th scope="col">رمز التتبع</th>
-            <th scope="col">تاريخ <i class="fa fa-calendar mx-2" aria-hidden="true"></i>
+            <th scope="col">Code de piste</th>
+            <th scope="col">L'histoire <i class="fa fa-calendar mx-2" aria-hidden="true"></i>
             </th>
           </tr>
         </thead>
@@ -38,8 +38,7 @@
         {% if page.has_next %}
   
         <a href="?page={{page.next_page_number}}" class="next-arrow"
-          ><i class="fa fa-long-arrow-right" aria-hidden="true"></i
-        ></a>
+          ><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
         {% endif %}
   
       </div>

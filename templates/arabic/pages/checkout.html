@@ -14,21 +14,21 @@
     <button class="filters__button is-active font-weight-bold " data-target="#desk">
      <i class="fa fa-building mx-2" style="font-size:18px" aria-hidden="true"></i>
 
-      إلى المكتب
+     Au bureau
 
     </button>
     <button class="filters__button font-weight-bold" data-target="#home">
   <i class="fa fa-home mx-2" style="font-size:18px" aria-hidden="true"></i>
-    إلى المنزل
+   vers la maison
     </button>
   </ul>
 
   <div>
-    <div data-content class="is-active" id="desk">
+    <div data-content class="is-active" id="desk" style="text-align:initial;">
       <div class="billing_details pt-5">
         <div class="row">
           <div class="col-lg-7">
-            <h3 style="text-align:initial;">تفاصيل الشحن</h3>
+            <h3 style="text-align:initial;">Détails de l'Livration </h3>
             <form id="form" class="row contact_form" method="post" style="text-align:initial;">
               {% csrf_token %}
               <div class="col-md-6 form-group p_star">
@@ -37,14 +37,14 @@
                   type="text"
                   class="form-control"
                   id="first"
-                  placeholder="الإسم الكامل"
+                  placeholder="le nom complet"
                   name="name"
                 />
               </div> 
                 <div class="col-md-6 form-group p_star">
                 <input
                   class="form-control"
-                  placeholder="رقم الهاتف"
+                  placeholder="Numéro de téléphone"
                   type="tel"
                   id="phone"
                   name="phone"
@@ -68,7 +68,7 @@
                   class="form-control"
                   id="zip"
                   name="email"
-                  placeholder="البريد الإلكتروني"
+                  placeholder="Email"
                 />
               </div>
               <div 
@@ -79,17 +79,17 @@
               class="banner-btn   my-4"
               type="submit"
             >
-              إرسال الطلب
+              Valider
             </button>
               </div>
             </form>
           </div>
           <div class="col-lg-5">
             <div class="order_box">
-              <h2 style="text-align:initial" >طلبيتك</h2>
+              <h2 style="text-align:initial" >Votre commande</h2>
               <ul class="list">
                 <li>
-                  <a href="#">المجموع <span>المنتج</span></a>
+                  <a href="#"> le produit<span> le total</span></a>
                 </li>
                 {% for item in items %}
                 <li>
@@ -98,22 +98,22 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                ">  <a style="text-align:initial" href="{% url 'single-product' item.product.id  %}"><strong class="mx-2 text-info">(x{{item.quantity}})</strong> {{item.product.name_ar | slice:':25'}} 
-                  </a>
-                  <span class="last">{{item.get_total}} دج</span>
+                ">  <a style="text-align:initial" href="{% url 'single-product' item.product.id  %}">{{item.product.name | slice:':25'}} 
+                  <strong class="mx-2 text-info">(x{{item.quantity}})</strong> </a>
+                  <span class="last">{{item.get_total}} DA</span>
                 </div>
                 </li>
                 {% endfor %}
               </ul>
               <ul class="list list_2">
                 <li class="d-flex align-items-center justify-content-between">
-                  <a href="#">المجموع </a><span>{{order.get_cart_total}} دج</span>
+                  <a href="#">le total </a><span>{{order.get_cart_total}} DA</span>
                 </li>
                 <li class="d-flex align-items-center justify-content-between">
-                  <a href="#" >الشحن </a><span id='shipping'>0 دج</span>
+                  <a href="#" >Livration </a><span id='shipping'>0 DA</span>
                 </li>
                 <li class="d-flex align-items-center justify-content-between">
-                  <a href="#">المجموع الكلي</a><span id="total_1">{{order.get_cart_total}} دج</span>
+                  <a href="#">Le total  </a><span id="total_1">{{order.get_cart_total}} DA</span>
                 </li>
               </ul>
             </div>
@@ -122,11 +122,11 @@
       </div>
     </div>
 
-    <div data-content id="home" >
+    <div data-content id="home" style="text-align:initial !important;">
       <div class="billing_details pt-5">
         <div class="row">
-          <div class="col-lg-7 text-right">
-            <h3>تفاصيل الشحن</h3>
+          <div class="col-lg-7 ">
+            <h3> Détails de l'Livration </h3>
             <form id="form2" class="row contact_form" method="post">
               {% csrf_token %}
               <div class="col-md-6 form-group p_star">
@@ -135,7 +135,7 @@
                   type="text"
                   class="form-control"
                   id="first"
-                  placeholder="الإسم الكامل"
+                  placeholder="le nom complet"
                   name="name"
                 />
               </div> 
@@ -143,7 +143,7 @@
                 <div class="col-md-6 form-group p_star">
                 <input
                   class="form-control"
-                  placeholder="رقم الهاتف"
+                  placeholder="Numéro de téléphone"
                   type="tel"
                   id="phone"
                   name="phone"
@@ -151,7 +151,7 @@
                   required
                 />
               </div>
-              <div class="col-6 form-group p_star">
+              <div class="col-6 form-group ">
                 <select class="custom-select w-75 wilaya" name="wilaya" id="wilaya2">
                 </select>
               </div>
@@ -169,7 +169,7 @@
                     class="form-control"
                     id="zip"
                     name="email"
-                    placeholder="البريد الإلكتروني"
+                    placeholder="Email"
                   />
                 </div>
               <div class="col-md-12 form-group p_star">
@@ -177,7 +177,7 @@
                   type="text"
                   class="form-control"
                   id="city"
-                  placeholder="المدينة"
+                  placeholder="Ville"
                   name="city"
                   required
                 />
@@ -188,7 +188,7 @@
                   type="text"
                   class="form-control"
                   id="address"
-                  placeholder="عنوان المنزل"
+                  placeholder="l'adresse de la maison"
                   name="address"
                 />
               </div>
@@ -200,7 +200,7 @@
               class="banner-btn   my-4"
               type="submit"
             >
-              إرسال الطلب
+              Valider
             </button>
               </div>
             </form>
@@ -210,10 +210,10 @@
 
           <div class="col-lg-5">
             <div class="order_box">
-              <h2 style="text-align:initial" >طلبيتك</h2>
+              <h2 style="text-align:initial" >Votre commande</h2>
               <ul class="list">
                 <li>
-                  <a href="#">المجموع <span>المنتج</span></a>
+                  <a href="#">le produit<span> le total </span></a>
                 </li>
                 {% for item in items %}
                 <li>
@@ -221,22 +221,22 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                ">  <a style="text-align:initial" href="{% url 'single-product' item.product.id  %}"><strong class="mx-2 text-info">(x{{item.quantity}})</strong> {{item.product.name_ar | slice:':25'}} 
+                ">  <a style="text-align:initial" href="{% url 'single-product' item.product.id  %}"><strong class="mx-2 text-info">(x{{item.quantity}})</strong> {{item.product.name | slice:':25'}} 
                   </a>
-                  <span class="last">{{item.get_total}} دج</span>
+                  <span class="last">{{item.get_total}} DA</span>
                 </div>
                 </li>
                 {% endfor %}
               </ul>
               <ul class="list list_2">
                 <li class="d-flex align-items-center justify-content-between">
-                  <a href="#">المجموع </a><span>{{order.get_cart_total}} دج</span>
+                  <a href="#">le total </a><span>{{order.get_cart_total}} DA</span>
                 </li>
                 <li class="d-flex align-items-center justify-content-between">
-                  <a href="#" >الشحن </a><span id='shipping_home'>0 دج</span>
+                  <a href="#" >Livration </a><span id='shipping_home'>0 DA</span>
                 </li>
                 <li class="d-flex align-items-center justify-content-between">
-                  <a href="#">المجموع الكلي</a><span id="total_2">{{order.get_cart_total}} دج</span>
+                  <a href="#">Le total </a><span id="total_2">{{order.get_cart_total}} DA</span>
                 </li>
               </ul>
             </div>

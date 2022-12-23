@@ -1,0 +1,45 @@
+<div class="media-body" style="text-align:initial;">
+    <h4 class="fw-bolder" style="font-weight:bold;margin:0">{{rate.get_user_name}}</h4>
+    {% if product.avg_rating == 5 %}
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    {% elif product.avg_rating == 4 %}
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-secondary"></i>
+
+    {% elif product.avg_rating == 3 %}
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+
+    {% elif product.avg_rating == 2 %}
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+
+    {% elif product.avg_rating == 1 %}
+    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+
+    {% else %}
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    <i class="fa fa-star text-secondary"></i>
+    {% endif %}
+  
+</div>

@@ -10,8 +10,8 @@
       <section class="lattest-product-area category-list ">
         <div class="product-main container pt-5">
 
-          <h2 class="title text-right">المنتجات</h2>
-        
+          <h2 class="title text-left">Des produits</h2>
+      
           <div class="product-grid" id="list_product">
         {% for product in products  %}
             <div class="showcase loading ">
@@ -34,12 +34,12 @@
         
               </div>
         
-              <div class="showcase-content text-right ">
+              <div class="showcase-content text-left ">
         
-                <a href="#" class="showcase-category">{{product.category.name_ar}}</a>
+                <a href="#" class="showcase-category">{{product.category.name}}</a>
         
                 <a href="{% url 'single-product' product.slug %}">
-                  <h3 class="showcase-title">{{product.name_ar}}</h3>
+                  <h3 class="showcase-title">{{product.name}}</h3>
                 </a>
         
                 <div class="showcase-rating">
@@ -87,10 +87,10 @@
         
                 <div class="price-box">
                   {% if product.price_promo %}
-                  <p class="price">{{product.price_promo}} دج</p>
+                  <p class="price">{{product.price_promo}} DA</p>
                   <del>{{product.price}} DA</del>
                   {% else %}
-                  <p class="price">{{product.price}} دج</p>
+                  <p class="price">{{product.price}} DA</p>
                   {% endif %}
                 </div>
         
@@ -174,12 +174,12 @@
 
       </div>
 
-      <div class="showcase-content text-right">
+      <div class="showcase-content text-left">
 
-        <a href="#" class="showcase-category">{{product.category.name_ar}}</a>
+        <a href="#" class="showcase-category">{{product.category.name}}</a>
 
         <a href="{% url 'single-product' product.slug %}">
-          <h3 class="showcase-title">{{product.name_ar}}</h3>
+          <h3 class="showcase-title">{{product.name}}</h3>
         </a>
 
         <div class="showcase-rating">
@@ -226,8 +226,12 @@
         </div>
 
         <div class="price-box">
-          <p class="price">{{product.price}} دج</p>
-          <del>{{product.price}} دج</del>
+          {% if product.price_promo %}
+          <p class="price">{{product.price_promo}} DA</p>
+          <del>{{product.price}} DA</del>
+          {% else %}
+          <p class="price">{{product.price}} DA</p>
+          {% endif %}
         </div>
 
       </div>

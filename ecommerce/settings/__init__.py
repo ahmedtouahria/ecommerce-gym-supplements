@@ -3,8 +3,6 @@ from pathlib import Path
 from decouple import  config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + "/../")))
-print(BASE_DIR)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -46,7 +44,6 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 CONSTANCE_CONFIG = {
     'SITE_NAME': ("Aya Collection", 'le nom de site Web'),
     'SITE_URL': ("http://localhost:8000", 'le lien de site Web'),
-    'SITE_URL_FR': ("http://localhost:8000", 'le lien de site Web'),
     'SITE_MAIL': ("ahmed@gmail.com", 'mail de site Web'),
     'address': ("alger 16000 albiar", 'address'),
     'PROMO_LIVRASTION': (False, 'le description de livration gratuit '),
@@ -69,18 +66,17 @@ CONSTANCE_CONFIG = {
     'CATEGORY_ITEM_COLOR':('#ff6c00','category item color '),
     'MINIMAL_PORODUCT_COLOR':('#ff6c00','your minimal product color '),
     'SECONDARY_COLOR':('grey','your secondary product color '),
-
-    
-
-
+    'FONT_SIZE_PRIMARY':('20px','your primary font size  '),
+    'FONT_SIZE_TITLE':('20px','your title font size  '),
+    'FONT_SIZE_SECONDARY':('16px','your secondary font size '),
 }
 CONSTANCE_CONFIG_FIELDSETS = {
-    'General Options': ('SITE_NAME', 'SITE_URL','LOGO','PROMO_LIVRASTION','SITE_MAIL','SITE_URL_FR'),
+    'General Options': ('SITE_NAME', 'SITE_URL','LOGO','PROMO_LIVRASTION','SITE_MAIL'),
     'Tokens': ('BASE_URL_YALIDIN','ID_API_YALIDIN','TOKEN_API_YALIDIN','Google_analytics_id','Google_analytics_tag','Google_analytics_credentials'),
     'réseau sociale': ('FACEBOOK_URL', 'INSTAGRAM_URL','WHATSAPP_NUMBER'),
     'contact & about': ('ABOUT', 'CONTACT_NUMBER','CONTACT_NUMBER2','address'),
     'SEO': ('SEO_DESCRIPTION','SEO_DESCRIPTION_FR'),
-    'COLORS': ('PRIMARY_COLOR','MINIMAL_PORODUCT_COLOR','CATEGORY_ITEM_COLOR',"SECONDARY_COLOR"),
+    'STYLES': ('PRIMARY_COLOR','MINIMAL_PORODUCT_COLOR','CATEGORY_ITEM_COLOR',"SECONDARY_COLOR","FONT_SIZE_PRIMARY","FONT_SIZE_SECONDARY","FONT_SIZE_TITLE"),
 
 
 }

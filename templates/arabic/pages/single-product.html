@@ -6,7 +6,7 @@
 <link rel="next" href="{{config.SITE_URL}}" />
 <meta property="og:locale" content="ar_AR" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="{{config.SITE_NAME}} - {{product.name_ar}}  " />
+<meta property="og:title" content="{{config.SITE_NAME}} - {{product.name}}  " />
 <meta property="og:description" content="{{config.SEO_DESCRIPTION}}" />
 <meta property="og:url" content="{{config.SITE_URL}}" />
 <meta property="og:site_name" content="{{config.SITE_NAME}}" />
@@ -264,11 +264,11 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
           </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text" style="text-align:initial;">
-                    <h3>{{product.name_ar}}</h3>
-                    <h2>{{product.price}} دج </h2>
+                    <h3>{{product.name}}</h3>
+                    <h2>{{product.price}} DA </h2>
                    
                     <ul class="list">
-                        <li><a class="active" href="#"><span>التصنيف</span> : {{product.category.name_ar}}</a></li>
+                        <li><a class="active" href="#"><span>Catégorie</span> : {{product.category.name}}</a></li>
                         <div class="media-body">
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
@@ -288,7 +288,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                       {% csrf_token %}
                     <div class="row my-3 mx-2">
                         <div class='col-3'>
-                        <label class="pt-2" for="qty">القياس:</label>
+                        <label class="pt-2" for="qty">La mesure:</label>
                         </div>
                         <div class='col-9'>
                             <select name="size" id="size_var" class=" mx-2">
@@ -297,7 +297,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                       </div>
                       <div class="row my-3 mx-2">
                         <div class='col-3'>
-                        <label class="pt-2" for="qty">الألوان:</label>
+                        <label class="pt-2" for="qty">Couleurs:</label>
                         </div>
                         <div class='col-9' id="color_container">
           
@@ -308,8 +308,8 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                         <a id="add_to_cart" style="
                         font-size: 14px;
                         padding: 0 10px;
-                        text-transform: capitalize;" class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}" href="{% url 'card' %}">الشراء الأن</a>
-                      <a  class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}"  href="#"><i class="fa fa-cart-plus " aria-hidden="true"></i>
+                        text-transform: capitalize;" class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}" href="{% url 'card' %}">Acheter maintenant </a>
+                      <a  class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}"  href="#">ajouté au panier<i class="fa fa-cart-plus mx-2" aria-hidden="true"></i>
                         </a>
                     </div>
        
@@ -326,7 +326,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
-                 aria-selected="false">التعليقات</a>
+                 aria-selected="false">commentaires</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -397,7 +397,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                                       
                                     </div>
                                 </div>
-                                <p class="text-right">{{rate.content}}</p>
+                                <p class="text-left">{{rate.content}}</p>
                             </div>
                             {% endfor %}
                     <hr>
@@ -406,7 +406,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                     </div>
                     <div class="col-lg-6">
                         <div class="review_box">
-                            <h4 style="text-align:initial;">إضافة تعليق</h4>
+                            <h4 style="text-align:initial;">Ajouter un commentaire </h4>
                             <div class="rating" >
                                 <input value="5" type="radio" name="rating" id="rating-5">
                                 <label data-rate="5" data-product="{{product.id}}" for="rating-5"></label>
@@ -424,11 +424,11 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                                 {% csrf_token %}
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="content" id="content" rows="1" placeholder="تعليق" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                        <textarea class="form-control" name="content" id="content" rows="1" placeholder="commenter" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
                                     </div>
                                 </div>
                             </form>
-                 <button class="primary-btn" id="add_comment">تعليق</button>
+                 <button class="primary-btn" id="add_comment">commentaire</button>
 
                         </div>
                     </div>
@@ -439,7 +439,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
 </section>
 <div class="product-main container py-5">
 
-    <h2 class="title" style="text-align:initial;">منتجات قد تعجبك</h2>
+    <h2 class="title" style="text-align:initial;">Produits que vous aimez </h2>
   
     <div class="product-grid">
   {% for product in products  %}
@@ -464,54 +464,14 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
   
         <div class="showcase-content">
   
-          <a href="#" style="text-align:initial;" class="showcase-category">{{product.category.name_ar}}</a>
+          <a href="#" style="text-align:initial;" class="showcase-category">{{product.category.name}}</a>
   
           <a href="{% url 'single-product' product.id %}">
-            <h3 style="text-align:initial;" class="showcase-title">{{product.name_ar}}</h3>
+            <h3 style="text-align:initial;" class="showcase-title">{{product.name}}</h3>
           </a>
   
-          <div class="showcase-rating">
-            {% if product.avg_rating == 5 %}
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            {% elif product.avg_rating == 4 %}
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star"></i>
-  
-            {% elif product.avg_rating == 3 %}
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-  
-            {% elif product.avg_rating == 2 %}
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-  
-            {% elif product.avg_rating == 1 %}
-            <i class="fa fa-star text-warning"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            {% else %}
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            {% endif %}
-          </div>
+          {% include 'arabic/partes/rating.html' with product=product %}
+
   
           <div class="price-box">
             <p class="price">{{product.price}}DA</p>

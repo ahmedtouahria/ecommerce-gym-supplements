@@ -20,7 +20,7 @@
     <div class="card__body">
       <div class="card__body body__text w-100" id="card-details">
         <div class="row">
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="skeleton w-100 skeleton-text skeleton-text__body"></div>
           </div>
           <div class="card__footer" id="card-footer">
@@ -267,26 +267,26 @@
             </div>
               <form method="get" action="{% url 'products' %}">
             <div class="sidebar-filter mt-50">
-              <div class="top-filter-head" style="text-align:initial">فلترة المنتجات</div>
+              <div class="top-filter-head" style="text-align:initial">Filtre de produit </div>
               <div class="common-filter" style="text-align:initial">
-                <div class="head">التصنيفات</div>
+                <div class="head">Classifications</div>
                 <form action="#">
                   <ul>
                     {% for cat in categorys %}
-                    <li class="filter-list"><input class="pixel-radio mx-2" type="radio" value="{{cat.name}}" id="{{cat.name}}" name="category"><label for="{{cat.name_ar}}">{{cat.name_ar}}</label></li>
+                    <li class="filter-list"><input class="pixel-radio mx-2" type="radio" value="{{cat.name}}" id="{{cat.name}}" name="category"><label for="{{cat.name}}">{{cat.name}}</label></li>
                     {% endfor %}
                   </ul>
               </div>
               <div class="common-filter mt-4" dir="ltr">
-                <div class="head" style="text-align:end">السعر</div>
+                <div class="head" style="text-align:end">le prix</div>
                  <div class="range ">
                 <div class="sliderValue">
                 <span id="slideValue"><p>100</p></span>
               </div>
               <div class="field">
-              <div class="value left"> 0 دج</div>
+              <div class="value left"> 0 DA</div>
                 <input class="range_input" id="range_input" name="price" type="range" min="0" max="10000" value="100" step="500">
-              <div class="value right">10000 دج</div>
+              <div class="value right">10000 DA</div>
               </div>
                 </div>
             </div>
@@ -296,14 +296,13 @@
               class="banner-btn   my-4"
               type="submit"
             >
-              فلترة <i class="fa fa-sliders"></i> 
+              Filtre <i class="fa fa-sliders"></i> 
             </button>
           </form>
           </div></div>
           <div class="col-md-8">
-            
             <div class="product-main container pt-5">
-          <h2 class="title" style="text-align:initial">المنتجات الجديدة</h2>
+          <h2 class="title" style="text-align:initial">Nouveaux produits </h2>
           {% if products %}
           <div class="product-grid" id="list_product">
         {% for product in products  %}
@@ -327,53 +326,19 @@
         
               <div class="showcase-content">
         
-                <a href="{% url 'category' product.category.name %}"  style="font-weight: bold;text-align:initial" class="showcase-category">{{product.category.name_ar}}</a>
+                <a href="{% url 'category' product.category.name %}"  style="font-weight: bold;text-align:initial" class="showcase-category">{{product.category.name}}</a>
         
                 <a href="{% url 'single-product' product.slug %}" style="text-align:initial">
-                  <h3 style="font-weight: bold; color: rgba(27, 27, 27, 0.879)"class="showcase-title">{{product.name_ar}}</h3>
+                  <h3 style="font-weight: bold; color: rgba(27, 27, 27, 0.879)"class="showcase-title">{{product.name}}</h3>
                 </a>
-        
-        
-                <div class="showcase-rating">
-                  {% if product.avg_rating == 5 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  {% elif product.avg_rating == 4 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-secondary"></i>        
-                  {% elif product.avg_rating == 3 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  {% elif product.avg_rating == 2 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  <i class="fa fa-star text-secondary"></i>   
-                  {% elif product.avg_rating == 1 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  <i class="fa fa-star text-secondary"></i>
-                  {% endif %}
-                </div>
-        
+  
+            {% include '../partes/rating.html' with product=product %}
                 <div class="price-box">
                   {% if product.price_promo %}
-                  <p class="price">{{product.price_promo}} دج</p>
-                  <del>{{product.price}} دج</del>
+                  <p class="price">{{product.price_promo}} DA</p>
+                  <del>{{product.price}} DA</del>
                   {% else %}
-                  <p class="price">{{product.price}} دج</p>
+                  <p class="price">{{product.price}} DA</p>
                   {% endif %}
                 </div>
         
@@ -420,7 +385,7 @@
 
 <div class="product-main container py-5">
 
-  <h2 class="title" style="text-align:initial">منتجات أخرى</h2>
+  <h2 class="title" style="text-align:initial">Autres produits </h2>
 
   <div class="product-grid">
 {% for product in products  %}
@@ -444,10 +409,10 @@
 
       <div class="showcase-content">
 
-        <a href="{% url 'category' product.category.name %}"  style="font-weight: bold;text-align:initial;" class="showcase-category">{{product.category.name_ar}}</a>
+        <a href="{% url 'category' product.category.name %}"  style="font-weight: bold;text-align:initial;" class="showcase-category">{{product.category.name}}</a>
         
         <a href="{% url 'single-product' product.slug %}">
-          <h3 style="font-weight: bold; color: rgba(27, 27, 27, 0.879);text-align:initial;"class="showcase-title">{{product.name_ar}}</h3>
+          <h3 style="font-weight: bold; color: rgba(27, 27, 27, 0.879);text-align:initial;"class="showcase-title">{{product.name}}</h3>
         </a>
 
         <div class="showcase-rating">
@@ -489,10 +454,10 @@
 
         <div class="price-box">
           {% if product.price_promo %}
-          <p class="price">{{product.price_promo}} دج</p>
-          <del>{{product.price}} دج</del>
+          <p class="price">{{product.price_promo}} DA</p>
+          <del>{{product.price}} DA</del>
           {% else %}
-          <p class="price">{{product.price}} دج</p>
+          <p class="price">{{product.price}} DA</p>
           {% endif %}
         </div>
 

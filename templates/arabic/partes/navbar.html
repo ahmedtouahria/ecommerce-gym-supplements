@@ -36,12 +36,7 @@
 {% endif %}
      
 
-      <div class="header-top-actions">
-        <select name="language">
-          <option value="en-US">Français</option>
-          <option value="es-ES"> <a href="{{config.SITE_URL}}">العربية</a></option>
-        </select>
-      </div>
+
     </div>
   </div>
 
@@ -126,11 +121,11 @@
           </li>
         </ul>
         {% endcomment %}
-        <button class="action-btn">
+   <!--   <button class="action-btn">
           <i class="fa fa-heart text-danger" aria-hidden="true"></i>
           <span class="count">0</span>
         </button>
-
+-->  
         <a class="action-btn" href="{% url  'card' %}">
           <i class="fa fa-shopping-bag text-info" aria-hidden="true"></i>
 
@@ -199,11 +194,11 @@
       <i class="fa fa-home" aria-hidden="true"></i>
     </a>
 
-    <button class="action-btn ">
+  <!-- <button class="action-btn ">
       <i class="fa fa-heart" aria-hidden="true"></i>
 
       <span class="count">0</span>
-    </button>
+    </button>--> 
 
     <button class="action-btn " data-mobile-menu-open-btn>
       <i class="fa fa-th-large" aria-hidden="true"></i>
@@ -282,29 +277,6 @@
     </ul>
 
     <div class="menu-bottom">
-      <ul class="menu-category-list">
-        <li class="menu-category">
-          <button class="accordion-menu" data-accordion-btn>
-            <p class="menu-title">langue</p>
-
-            <i class="caret-back-outline" class="caret-back"></i>
-            <div>
-              <i class="fa fa-plus add-icon text-secondary" aria-hidden="true"></i>
-              <i class="fa fa-times remove-icon text-secondary" aria-hidden="true"></i>
-  
-            </div>
-          </button>
-
-          <ul class="submenu-category-list" data-accordion>
-            <li class="submenu-category">
-              <a href="{% url 'index' %}" class="submenu-title">Français</a>
-            </li>
-            <li class="submenu-category">
-              <a href="{{config.SITE_URL}}" class="submenu-title">العربية</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
 <hr>
       <ul class="menu-social-container">
         <li>

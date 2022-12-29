@@ -322,7 +322,7 @@ def register(request):
         'config': config,
 
         }
-    return render(request, 'account/signup_ar.html',context)
+    return render(request, 'account/signup.html',context)
 # login Customer views
 
 # la page d'authentication (Login)
@@ -350,7 +350,7 @@ def login_customer(request):
         'config': config,
 
         }
-    return render(request, 'account/login_ar.html',context)
+    return render(request, 'account/login.html',context)
 
 
 @login_required(login_url='login')

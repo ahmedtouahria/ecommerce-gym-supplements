@@ -41,61 +41,9 @@
                 <a href="{% url 'single-product' product.slug %}">
                   <h3 class="showcase-title">{{product.name}}</h3>
                 </a>
-        
-                <div class="showcase-rating">
-                  {% if product.avg_rating == 5 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  {% elif product.avg_rating == 4 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star"></i>
-        
-                  {% elif product.avg_rating == 3 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-        
-                  {% elif product.avg_rating == 2 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-        
-                  {% elif product.avg_rating == 1 %}
-                  <i class="fa fa-star text-warning"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  {% else %}
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  {% endif %}
-                </div>
-        
-                <div class="price-box">
-                  {% if product.price_promo %}
-                  <p class="price">{{product.price_promo}} DA</p>
-                  <del>{{product.price}} DA</del>
-                  {% else %}
-                  <p class="price">{{product.price}} DA</p>
-                  {% endif %}
-                </div>
-        
+                {% include '../partes/rating.html' with product=product %}
+                {% include '../partes/price_box.html' with product=product %}
               </div>
-        
             </div>
             {% endfor %}
           </div>
@@ -182,58 +130,8 @@
           <h3 class="showcase-title">{{product.name}}</h3>
         </a>
 
-        <div class="showcase-rating">
-          {% if product.avg_rating == 5 %}
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          {% elif product.avg_rating == 4 %}
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star"></i>
-
-          {% elif product.avg_rating == 3 %}
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-
-          {% elif product.avg_rating == 2 %}
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-
-          {% elif product.avg_rating == 1 %}
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          {% else %}
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          {% endif %}
-        </div>
-
-        <div class="price-box">
-          {% if product.price_promo %}
-          <p class="price">{{product.price_promo}} DA</p>
-          <del>{{product.price}} DA</del>
-          {% else %}
-          <p class="price">{{product.price}} DA</p>
-          {% endif %}
-        </div>
-
+       {% include '../partes/rating.html' with product=product %}
+       {% include '../partes/price_box.html' with product=product %}
       </div>
 
     </div>

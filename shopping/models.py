@@ -105,11 +105,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
 
 class ImageBanner(models.Model):
-    price = models.FloatField("Prix promotion", null=True)
-    titel = models.CharField(("Titre de banner"), max_length=50, null=True)
-    image =ResizedImageField(force_format="WEBP",quality=75,upload_to='banners/')
-    category = models.CharField(
-        ("categorie de produit"), max_length=50, null=True)
+    image =models.FileField('image or video ',upload_to='banners')
 
 
 class Category(models.Model):

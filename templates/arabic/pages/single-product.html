@@ -304,14 +304,18 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
                             </div>
                       </div>
                       {% endif %}
-                    <div class="card_area d-flex align-items-center">
-                        <a id="add_to_cart" style="
-                        font-size: 14px;
-                        padding: 0 10px;
-                        text-transform: capitalize;" class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}" href="{% url 'card' %}">Acheter maintenant </a>
-                      <a  class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}"  href="#">ajouté au panier<i class="fa fa-cart-plus mx-2" aria-hidden="true"></i>
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <a id="add_to_cart"  style="width: max-content; font-weight: bold;" class="primary-btn add_to_cart" data-action="add" data-product="{{product.id}}" href="{% url 'card' %}">Acheter maintenant </a>
+
+                      </div>
+                      <div class="col-12 col-md-6">
+    <a  class="primary-btn add_to_cart" style="width: max-content; font-weight: bold;"  data-action="add" data-product="{{product.id}}"  href="#">ajouté au panier<i class="fa fa-cart-plus mx-2" style="font-size: large;" aria-hidden="true"></i>
                         </a>
+                      </div>
                     </div>
+      
+
        
                   
                   </form>
@@ -324,10 +328,7 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
 <section class="product_description_area">
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
-                 aria-selected="false">commentaires</a>
-            </li>
+          <h3 class="pt-2 text-secondary">Commentaires des clients</h3>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
@@ -471,12 +472,8 @@ href="{% static 'css/ion.rangeSlider.skinFlat.min.css'%}"
           </a>
   
           {% include 'arabic/partes/rating.html' with product=product %}
+          {% include '../partes/price_box.html' with product=product %}
 
-  
-          <div class="price-box">
-            <p class="price">{{product.price}}DA</p>
-            <del>{{product.price}}DA</del>
-          </div>
         </div>
       </div>
       {% endfor %}

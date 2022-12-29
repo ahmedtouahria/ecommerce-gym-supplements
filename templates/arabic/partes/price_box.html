@@ -1,0 +1,8 @@
+<div class="price-box">
+    {% if product.price_promo %}
+      <p class="price"> {{product.price_promo}} DA</p>
+      <del> {{product.price}} DA</del>
+      {% else %}
+      <p class="price"> {{product.price}} DA</p>
+      {% endif %}
+    </div>

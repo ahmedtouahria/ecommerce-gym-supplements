@@ -150,19 +150,10 @@
             <a href="{% url 'single-product' pk=product.slug  %}">
               <h4 style="font-size:{{config.FONT_SIZE_PRIMARY}} !important;"class="showcase-title">{{product.name}}</h4>
             </a>
-        {% include 'arabic/partes/rating.html' with product=product %}
+        
+          {% include 'arabic/partes/rating.html' with product=product %}  
             <a href="{% url 'category' cat=product.category.name  %}" class="showcase-category">{{product.category}}</a>
-
-            <div class="price-box">
-                                  {% if product.price_promo %}
-                    <p class="price">{{product.price_promo}} DA</p>
-                    <del>{{product.price}} DA</del>
-                    {% else %}
-                    <p class="price">{{product.price}} DA</p>
-                    {% endif %}
-              
-              
-            </div>
+          {% include '../partes/price_box.html' with product=product %}
 
           </div>
 
@@ -186,18 +177,11 @@
               <h4 style="font-size:{{config.FONT_SIZE_PRIMARY}} !important;"class="showcase-title">{{product.name}}</h4>
             </a>
 
+        
+            {% include 'arabic/partes/rating.html' with product=product %}  
             <a href="{% url 'category' cat=product.category.name  %}" class="showcase-category">{{product.category}}</a>
+          {% include '../partes/price_box.html' with product=product %}
 
-            <div class="price-box">
-                                  {% if product.price_promo %}
-                    <p class="price">{{product.price_promo}} DA</p>
-                    <del>{{product.price}} DA</del>
-                    {% else %}
-                    <p class="price">{{product.price}} DA</p>
-                    {% endif %}
-              
-              
-            </div>
 
           </div>
 
@@ -232,14 +216,8 @@
 
             <a href="{% url 'category' cat=trend.category.name  %}" class="showcase-category">{{trend.category}}</a>
 
-            <div class="price-box">
-              {% if trend.price_promo %}
-              <p class="price">{{trend.price_promo}} DA</p>
-              <del>{{trend.price}} DA</del>
-              {% else %}
-              <p class="price">{{trend.price}} DA</p>
-              {% endif %}
-            </div>
+            {% include '../partes/price_box.html' with product=trend %}
+
 
           </div>
 
@@ -267,14 +245,8 @@
 
             <a href="{% url 'category' cat=trend.category.name  %}" class="showcase-category">{{trend.category}}</a>
 
-            <div class="price-box">
-              {% if trend.price_promo %}
-              <p class="price">{{trend.price_promo}} DA</p>
-              <del>{{trend.price}} DA</del>
-              {% else %}
-              <p class="price">{{trend.price}} DA</p>
-              {% endif %}
-            </div>
+            {% include '../partes/price_box.html' with product=trend %}
+
 
           </div>
 
@@ -308,18 +280,15 @@
             <a href="{% url 'single-product'  pk=product.slug %}">
               <h4 style="font-size:{{config.FONT_SIZE_PRIMARY}} !important;"class="showcase-title">{{product.name}}</h4>
             </a>
-            {% include 'arabic/partes/rating.html' with product=product %}
+            
+          {% include 'arabic/partes/rating.html' with product=product %}
+
+  
 
             <a href="{% url 'category' cat=product.category.name  %}" class="showcase-category">{{product.category}}</a>
 
-            <div class="price-box">
-                    {% if product.price_promo %}
-                    <p class="price">{{product.price_promo}} DA</p>
-                    <del>{{product.price}} DA</del>
-                    {% else %}
-                    <p class="price">{{product.price}} DA</p>
-                    {% endif %}
-            </div>
+            {% include '../partes/price_box.html' with product=product %}
+
 
           </div>
 
@@ -343,18 +312,15 @@
             <a href="{% url 'single-product'  pk=product.slug %}">
               <h4 style="font-size:{{config.FONT_SIZE_PRIMARY}} !important;"class="showcase-title">{{product.name}}</h4>
             </a>
-            {% include 'arabic/partes/rating.html' with product=product %}
+            
+          {% include 'arabic/partes/rating.html' with product=product %}
+
+  
 
             <a href="{% url 'category' cat=product.category.name  %}" class="showcase-category">{{product.category}}</a>
 
-            <div class="price-box">
-              {% if product.price_promo %}
-              <p class="price">{{product.price_promo}} DA</p>
-              <del>{{product.price}} DA</del>
-              {% else %}
-              <p class="price">{{product.price}} DA</p>
-              {% endif %}
-            </div>
+            {% include '../partes/price_box.html' with product=product %}
+
 
           </div>
 
@@ -558,19 +524,11 @@
                     <h3 class="showcase-title" style="font-size:{{config.FONT_SIZE_PRIMARY}} !important;">{{product.name}}</h3>
                   </a>
           
-                  {% include 'arabic/partes/rating.html' with product=product %}
+                  
+          {% include 'arabic/partes/rating.html' with product=product %}
 
-                  <div class="price-box">
-                  {% if product.price_promo %}
-                    <p class="price"> {{product.price_promo}} DA</p>
-                    <del> {{product.price}} DA</del>
-                    {% else %}
-                    <p class="price"> {{product.price}} DA</p>
-                    {% endif %}
-                    
-
-                  </div>
-          
+  
+                  {% include '../partes/price_box.html' with product=product %}
                 </div>
           
               </div>

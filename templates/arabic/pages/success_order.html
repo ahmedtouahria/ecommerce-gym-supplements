@@ -49,7 +49,7 @@
 						<h4>Vos informations de demande</h4>
 						<ul class="list">
 							<li><a href="#"><span>Numéro d'avance </span> : #{{shipping_address.order.id}}</a></li>
-							<li><a href="#"><span>La date</span> : {{shipping_address.order.get_date_arabic}}</a></li>
+							<li><a href="#"><span>La date</span> : {{shipping_address.order.get_date_french}}</a></li>
 							<li><a href="#"><span>le total</span> : {{shipping_address.order.get_cart_total}} DA</a></li>
 							<li><a href="#"><span>Méthode de paiement </span> À la livraison </a></li>
 						</ul>
@@ -65,7 +65,7 @@
                             {% else %}
 							<li><a href="#"><span>Rue</span> : {{shipping_address.address}}</a></li>
 							<li><a href="#"><span>Ville</span> : {{shipping_address.city}}</a></li>
-							<li><a href="#"><span>l'état</span> : {{shipping_address.state}}</a></li>
+							<li><a href="#"><span>wilaya</span> : {{shipping_address.state}}</a></li>
                             {% endif %}
 						</ul>
 					</div>

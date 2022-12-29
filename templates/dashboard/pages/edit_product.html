@@ -1,0 +1,500 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+ {% block content_dashboard %}
+<h3 class="mx-5 pt-3">Ajouter le produit</h3>
+<div class="container-fluid pt-3">
+  <form method="post" enctype="multipart/form-data" id="form_add_product">
+    {% csrf_token %}
+    <div class="previews"></div>
+
+    <input required class="form-control mb-4" name="name" placeholder="Nom" />
+    <input required class="form-control mb-4" name="name_ar" placeholder="الإسم" />
+
+    <select
+      required
+      name="category"
+      class="form-select mb-4"
+      aria-label="Default select example"
+    >
+      <option selected>Choisir une catégorie</option>
+      {% for cat in category %}
+      <option>{{cat.name}}</option>
+      {% endfor %}
+    </select>
+
+
+    <div class="row">
+      <div class="col-6">
+        <input
+        required
+        class="form-control mb-4"
+        type="number"
+        name="price1"
+        placeholder="prix d'achat"
+      />
+      </div>
+      <div class="col-6">
+        <input
+        required
+        class="form-control mb-4"
+        type="number"
+        name="price2"
+        placeholder="prix de vente"
+      />
+      </div>
+    </div>
+    <input
+      required
+      class="form-control mb-4"
+      type="number"
+      name="quantity"
+      placeholder="quantité"
+    />
+    <input
+      required
+      class="form-control mb-4"
+      name="description"
+      placeholder="description"
+    />
+    <input
+    required
+    class="form-control mb-4"
+    name="description_ar"
+    placeholder="الوصف"
+  />
+    <div class="row">
+      <div class="col-6">
+        <input
+        required
+        class="form-control mb-4"
+        name="etagere"
+        placeholder="étagére"
+      />
+      </div>
+      <div class="col-6">
+        <input
+        required
+        class="form-control mb-4"
+        name="reference"
+        placeholder="reference"
+      />
+      </div>
+    </div>
+
+    <div class="upload__box">
+      <div class="upload__btn-box">
+        <label class="upload__btn">
+          <i class="fa fa-upload fs-5" aria-hidden="true"></i>
+          <input
+            type="file"
+            id="product_file"
+            name="image"
+            class="upload__inputfile"
+          />
+        </label>
+      </div>
+      <div class="upload__img-wrap"></div>
+    </div>
+    <div class="upload__box">
+      <div class="upload__btn-box">
+        <label class="upload__btn">
+          <i class="fa fa-upload fs-5" aria-hidden="true"></i>
+          <input
+            type="file"
+            id="product_file"
+            name="images"
+            multiple
+            data-max_length="5"
+            class="upload__inputfile"
+          />
+        </label>
+      </div>
+      <div class="upload__img-wrap"></div>
+    </div>
+
+    <input
+      class="btn btn-outline-success btn-sm w-25"
+      type="submit"
+      placeholder="add"
+    />
+  </form>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="wrapper mb-4">
+          <div class="title">
+            <h2>Size & Color</h2>
+          </div>
+          <div class="content">
+            <p>Press enter or add a comma after each tag</p>
+            <label>sizes</label>
+
+            <ul class="ul_tags">
+              <input type="text" spellcheck="false" />
+            </ul>
+            <label>colors</label>
+
+            <ul class="ul_tags2">
+              <input type="text" spellcheck="false" />
+            </ul>
+            <div class="details">
+              <p><span>10</span> tags are remaining</p>
+            </div>
+            <div class="details2">
+              <p><span>10</span> tags are remaining</p>
+            </div>
+          </div>
+        </div>
+        <input
+          class="btn btn-outline-info btn-sm w-25"
+          placeholder="add"
+          id="color_send"
+        />
+    </div>
+  </div>
+<style>
+  .upload__inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+ }
+  .upload__btn {
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    min-width: 116px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid;
+    background-color: #ff7600;
+    border-color: #ff7600;
+    border-radius: 10px;
+    line-height: 26px;
+    font-size: 14px;
+ }
+  .upload__btn:hover {
+    background-color: unset;
+    color: #4045ba;
+    transition: all 0.3s ease;
+ }
+  .upload__btn-box {
+    margin-bottom: 10px;
+ }
+  .upload__img-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+ }
+  .upload__img-box {
+    width: 200px;
+    padding: 0 10px;
+    margin-bottom: 12px;
+ }
+  .upload__img-close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    line-height: 24px;
+    z-index: 1;
+    cursor: pointer;
+ }
+  .upload__img-close:after {
+    content: '\2716';
+    font-size: 14px;
+    color: white;
+ }
+  .img-bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding-bottom: 100%;
+ }
+ /*---- TAGS INPUT SECTION*/ 
+ .wrapper{
+  width: 496px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 25px 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.06);
+}
+.wrapper :where(.title, li, li i, .details){
+  display: flex;
+  align-items: center;
+}
+.title img{
+  max-width: 21px;
+}
+.title h2{
+  font-size: 21px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.wrapper .content{
+  margin: 10px 0;
+}
+.content p{
+  font-size: 15px;
+}
+.content ul{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7px;
+  margin: 12px 0;
+  border-radius: 5px;
+  border: 1px solid #a6a6a6;
+}
+.content ul  li{
+  color: #333;
+  margin: 4px 3px;
+  list-style: none;
+  border-radius: 5px;
+  background: #F2F2F2;
+  padding: 5px 8px 5px 10px;
+  border: 1px solid #e3e1e1;
+}
+.content ul li i{
+  height: 20px;
+  width: 20px;
+  color: #808080;
+  margin-left: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #dfdfdf;
+  justify-content: center;
+}
+.content ul input{
+  flex: 1;
+  padding: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+.wrapper .details{
+  justify-content: space-between;
+}
+.details button{
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 9px 15px;
+  border-radius: 5px;
+  background: #5372F0;
+  transition: background 0.3s ease;
+}
+.details button:hover{
+  background: #2c52ed;
+}
+</style>
+<script src="{% static 'js/vendor/jquery-2.2.4.min.js'%}"></script>
+
+  <script>
+    /*
+
+ <------- SCRIPT TO ADD SIZE AND COLORS IN THE TAGS AND SEND THIS INTO SERVER --------->
+  
+  */
+    let ul = document.querySelector(".ul_tags"),
+      ul2 = document.querySelector(".ul_tags2"),
+      input = document.querySelector(".ul_tags input "),
+      tagNumb = document.querySelector(".details span");
+    (input2 = document.querySelector(".ul_tags2 input ")),
+      (tagNumb2 = document.querySelector(".details2 span"));
+
+    let maxTags = 5;
+    var tags = ["X", "L"]; // array of item tags
+    var tags2 = ["black"]; // array of item tags
+
+    countTags();
+    createTag();
+    countTags2();
+    createTag2();
+    function countTags() {
+      input.focus();
+      tagNumb.innerText = maxTags - tags.length;
+    }
+    function createTag() {
+      ul.querySelectorAll("li").forEach((li) => li.remove());
+      tags
+        .slice()
+        .reverse()
+        .forEach((tag) => {
+          let liTag = `<li>${tag} <i class="fa fa-remove" onclick="remove(this, '${tag}')"></i></li>`;
+          ul.insertAdjacentHTML("afterbegin", liTag);
+        });
+      countTags();
+    }
+
+    function remove(element, tag) {
+      let index = tags.indexOf(tag);
+      tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+      element.parentElement.remove();
+      countTags();
+      countTags2();
+    }
+    function remove2(element, tag) {
+      let index = tags2.indexOf(tag);
+      tags2 = [...tags2.slice(0, index), ...tags2.slice(index + 1)];
+      element.parentElement.remove();
+
+      countTags2();
+    }
+
+    function addTag(e) {
+      if (e.which == 32) {
+        let tag = e.target.value.replace(/\s+/g, " ");
+        if (tag.length > 0 && !tags.includes(tag)) {
+          tag.split(",").forEach((tag) => {
+            tags.push(tag);
+            console.log("sizes", tags);
+
+            createTag();
+          });
+        }
+        e.target.value = "";
+      }
+    }
+
+    function countTags2() {
+      input2.focus();
+      tagNumb2.innerText = maxTags - tags2.length;
+    }
+    function createTag2() {
+      ul2.querySelectorAll("li").forEach((li) => li.remove());
+      tags2
+        .slice()
+        .reverse()
+        .forEach((tag) => {
+          let liTag = `<li>${tag} <i class="fa fa-remove" onclick="remove2(this, '${tag}')"></i></li>`;
+          ul2.insertAdjacentHTML("afterbegin", liTag);
+        });
+      countTags2();
+    }
+    function addTag2(e) {
+      if (e.which == 32) {
+        let tag = e.target.value.replace(/\s+/g, " ");
+        if (tag.length > 0 && !tags2.includes(tag)) {
+          tag.split(",").forEach((tag) => {
+            tags2.push(tag);
+            console.log("colors :", tags2);
+
+            createTag2();
+          });
+        }
+        e.target.value = "";
+      }
+    }
+
+    // ---- SEND REQUEST ---- ADD VARIATION
+    const send = document.getElementById("color_send");
+    send.addEventListener("click", function (e) {
+      //    _this.attr("disabled", "disabled");
+      send.disabled = true;
+      addFormData();
+      send.disabled = false;
+
+      //_this.removeAttr("disabled");
+    });
+    function addFormData() {
+      data = {
+        sizes: tags,
+        colors: tags2,
+      };
+
+      fetch("/api/add_product/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => {
+          console.log("Request complete! response:", res);
+        })
+        .then((data) => {
+          location.reload();
+        });
+    }
+
+    input.addEventListener("keyup", addTag);
+    input2.addEventListener("keyup", addTag2);
+
+    // send post request to add product
+
+    $(document).ready(function () {
+      ImgUpload();
+    });
+    
+    function ImgUpload() {
+      var imgWrap = "";
+      var imgArray = [];
+    
+      $('.upload__inputfile').each(function () {
+        $(this).on('change', function (e) {
+          imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+          var maxLength = $(this).attr('data-max_length');
+    
+          var files = e.target.files;
+          var filesArr = Array.prototype.slice.call(files);
+          var iterator = 0;
+          filesArr.forEach(function (f, index) {
+    
+            if (!f.type.match('image.*')) {
+              return;
+            }
+    
+            if (imgArray.length > maxLength) {
+              return false
+            } else {
+              var len = 0;
+              for (var i = 0; i < imgArray.length; i++) {
+                if (imgArray[i] !== undefined) {
+                  len++;
+                }
+              }
+              if (len > maxLength) {
+                return false;
+              } else {
+                imgArray.push(f);
+    
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                  var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                  imgWrap.append(html);
+                  iterator++;
+                }
+                reader.readAsDataURL(f);
+              }
+            }
+          });
+        });
+      });
+    
+      $('body').on('click', ".upload__img-close", function (e) {
+        var file = $(this).parent().data("file");
+        for (var i = 0; i < imgArray.length; i++) {
+          if (imgArray[i].name === file) {
+            imgArray.splice(i, 1);
+            break;
+          }
+        }
+        $(this).parent().parent().remove();
+      });
+    }
+  </script>
+  {% endblock content_dashboard %}
+</div>

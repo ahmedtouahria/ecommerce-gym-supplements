@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 import json
+from shopping.forms import ProductForm
 from shopping.models import CategorySub, Customer, Order, OrderItem, Product, ProductImage, ShippingAddress, Variant
 from django.db.models import Avg, Count, Min, Sum
 from datetime import date
@@ -223,6 +224,15 @@ def add_product(request):
         return redirect('index')
         
 @login_required(login_url='login')
+
+
+
+def edit_product(request,pk):
+    product=Product.objects.get(id=pk)
+    context={
+        'form' :ProductForm(data=request.data)
+    }
+    return render(request,'dashboard/pages/edit_product.html', context)
 
 def single_product(request, pk):
     if request.user.admin:

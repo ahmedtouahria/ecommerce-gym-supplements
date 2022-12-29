@@ -94,7 +94,6 @@
       <div class="category-item-container has-scrollbar">
 {% for cat in category_sub %}
         <div class="category-item">
-
           <div class="category-img-box">
             <img src="{{cat.image.url}}" alt="dress & frock" width="30">
           </div>
@@ -104,11 +103,11 @@
             <div class="category-content-flex justify-space-between align-items-baseline">
               <h3 class="category-item-title px-1" style="font-size:{{config.FONT_SIZE_PRIMARY}} !important;">{{cat.name | capfirst}}</h3>
 
-              <p class="category-item-amount">(53)</p>
+              <p class="category-item-amount">({{cat.count_product}})</p>
             </div>
+            <p class="p-0 m-0">{{cat.description}}</p>
 
-            <a href="{% url 'category' cat=cat.name  %}" class="category-btn">Show all</a>
-
+            <a href="{% url 'category' cat=cat.name  %}" class="category-btn" style="font-size:16px">Show all</a>
           </div>
 
         </div>
@@ -154,9 +153,7 @@
           {% include 'arabic/partes/rating.html' with product=product %}  
             <a href="{% url 'category' cat=product.category.name  %}" class="showcase-category">{{product.category}}</a>
           {% include '../partes/price_box.html' with product=product %}
-
           </div>
-
         </div>
         {% endfor %}
       </div>
@@ -319,7 +316,7 @@
 
             <a href="{% url 'category' cat=product.category.name  %}" class="showcase-category">{{product.category}}</a>
 
-            {% include '../partes/price_box.html' with product=product %}
+          {% include '../partes/price_box.html' with product=product %}
 
 
           </div>

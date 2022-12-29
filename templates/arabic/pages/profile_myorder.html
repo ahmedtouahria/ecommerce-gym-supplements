@@ -7,7 +7,7 @@
     <h4 class="p-2 text-info mx-auto">Demande n °- {{order.transaction_id}}</h4>
 
 
-    <section class="cart_area py-1 text-right">
+    <section class="cart_area py-1 text-left">
         <div class="container">
           <div class="cart_inner">
             <div class="table-responsive">
@@ -49,7 +49,7 @@
                       </div>
                     </td>
                     <td>
-                      <h5>{{item.get_total}} دج </h5>
+                      <h5>{{item.get_total}} DA </h5>
                     </td>
                   </tr>
                   {% endfor %}
@@ -82,7 +82,7 @@
         </div>
       </section>
 </div>
-<div class="card mb-5 mt-0 text-right">
+<div class="card mb-5 mt-0 text-left">
   <h4 class="p-2 text-info mx-auto">Le statut de demande </h4>
 {% if last_status.last_status == "En préparation" %}
   <div class="row ">
@@ -192,7 +192,7 @@
     width: 7px;
     top: -2px;
     bottom: 0;
-    right: 5px;
+    left: 5px;
     margin: auto 0;
     border: 0px solid #AFAFAF;
     border-width: 0px 2px 2px 0;
@@ -208,7 +208,7 @@
     border-color: #fff;
     border-width: 0px 3px 3px 0;
     width: 7px;
-    right: 11px;
+    left: 11px;
     opacity: 1;
   }
   .order-tracking p {
@@ -228,7 +228,7 @@
     background-color: #f7be16;
     top: 13px;
     position: absolute;
-    right: calc(-50% + 20px);
+    left: calc(-50% + 20px);
     z-index: 0;
   }
   .order-tracking:first-child:before{display: none;}
@@ -237,7 +237,7 @@
 <script>
   edit_order = document.getElementById("edit_order");
   edit_order.addEventListener("click", function(){
-    دج .ajax({
+    DA .ajax({
       type: "POST",
       beforeSend: function (request) {
         request.setRequestHeader("Content-Type", "application/json");

@@ -124,7 +124,7 @@ class CategorySub(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='sub_cat')
     image = models.FileField(upload_to='category_sub/', null=True)
-
+    description = models.TextField(_("description"),default="")
     def __str__(self):
         return self.name
 
@@ -132,11 +132,13 @@ class CategorySub(models.Model):
         count_products_category = Product.objects.filter(
             category=self).aggregate(count_products=models.Sum("count_sould"))
         return count_products_category
-
+    def count_product(self):
+        return Product.objects.filter(category=self).count()
 
 class Product(models.Model):
+    STATUS_CHOICES=(('promotion','promotion'),('nouvelle','nouvelle'))
     name = models.CharField(max_length=200, unique=True)
-    name_ar = models.CharField(max_length=200, unique=True,null=True)
+    name_ar = models.CharField(max_length=200,blank=True,null=True)
     slug = models.SlugField(blank=True, null=True)
     category = models.ForeignKey(
         "shopping.CategorySub", on_delete=models.PROTECT, null=True, blank=True)
@@ -150,7 +152,7 @@ class Product(models.Model):
     description = models.CharField(max_length=300)
     description_ar = models.CharField(max_length=300,null=True)
     quantity = models.IntegerField(default=1)
-    status = models.CharField(max_length=200, blank=True, null=True)
+    status = models.CharField(max_length=200, blank=True, null=True,choices=STATUS_CHOICES)
     image = ResizedImageField(force_format="WEBP",quality=75,upload_to='products/')
     available = models.BooleanField(default=True)
     barcode_num = models.CharField(max_length=13, null=True, blank=True)

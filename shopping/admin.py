@@ -4,8 +4,11 @@ from django.contrib.auth.models import Group
 from .models import *
 # Register your models here.
 
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
 
-
+class VariantImageInline(admin.TabularInline):
+    model = Variant
 
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
@@ -13,17 +16,22 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+
+
+
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     list_display = ('name', 'price', 'category', 'available', 'avg_rating')
     search_fields = ('category', 'name')
-    readonly_fields = ('barcode_num', 'profit','num_views')
+    readonly_fields = ('barcode_num', 'profit','num_views','count_sould')
     actions = ['set_product_avaiable', ]
     '''  def set_product_avaiable(self,request,queryset):
         queryset.update(available=True)
     def has_delete_permission(self, request, obj=None):
         return False '''
-
+    inlines = [
+        ProductImageInline,VariantImageInline
+    ]
 
 class FavoritectAdmin(admin.ModelAdmin):
     model = Favorite

@@ -31,7 +31,7 @@ def dashboard(request):
         num_products = Product.objects.all().count()
         num_promotors = Customer.objects.filter(is_receveur=True)
         best_sellers = Product.objects.all().order_by("-count_sould")[:7]
-
+        recent_order_not_confirmed=Order.objects.filter(confirmed=False)
         # dashboard chart graphic
         chart_data_order = (
             Order.objects.annotate(date=TruncMonth("date_ordered"))
@@ -64,6 +64,7 @@ def dashboard(request):
             "num_orders": num_orders,
             "num_products": num_products,
             "num_promotors": num_promotors,
+            "recent_order_not_confirmed":recent_order_not_confirmed,
             "titel": "Accueil",
             "active": "home",
 

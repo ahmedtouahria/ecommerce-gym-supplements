@@ -54,24 +54,6 @@
 {% for img in imgs_banner %}
         <div class="slider-item skeleton">
           <img src="{{img.image.url}}" alt="women's latest fashion sale" class="banner-img">
-
-          <div class="banner-content" style="background: linear-gradient(45deg, #0200ffb0, #05e49e80);">
-
-            <p class="banner-subtitle" style="
-            font-weight: bold;
-            color: cornsilk;
-        ">{{img.category}}</p>
-
-            <h2 style="font-size:{{config.FONT_SIZE_TITLE}} !important;"class="banner-title" style="color: #c7ff00;">{{img.titel}}</h2>
-
-            <p class="banner-text text-light">
-              Commence à partir de  <b>{{img.price}}</b> DA
-            </p>
-
-            <a href="{% url 'products'  %}" class="banner-btn">Shop now</a>
-
-          </div>
-
         </div>
 {% endfor %}
       </div>
@@ -79,10 +61,6 @@
     </div>
 
   </section>
-
-
-
-
   <!--
     - CATEGORY
   -->

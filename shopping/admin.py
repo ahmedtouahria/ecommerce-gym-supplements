@@ -4,9 +4,9 @@ from django.contrib.auth.models import Group
 from .models import *
 # Register your models here.
 
-class ProductImageInline(admin.TabularInline):
+class ProductImageInline(admin.StackedInline):
     model = ProductImage
-
+    
 class VariantImageInline(admin.TabularInline):
     model = Variant
 

@@ -17,18 +17,18 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 
-
+def set_product_avaiable(self,request,queryset):
+    """set product available"""
+    queryset.update(available=True)
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     list_display = ('name', 'price', 'category', 'available', 'avg_rating')
-    search_fields = ('category', 'name')
-    readonly_fields = ('barcode_num', 'profit','num_views','count_sould')
-    actions = ['set_product_avaiable', ]
-    '''  def set_product_avaiable(self,request,queryset):
-        queryset.update(available=True)
-    def has_delete_permission(self, request, obj=None):
-        return False '''
+    search_fields = ('category__name', 'name')
+    readonly_fields = ('barcode_num', 'profit','num_views','count_sould','slug')
+    actions = [set_product_avaiable, ]
     inlines = [
         ProductImageInline,VariantImageInline
     ]

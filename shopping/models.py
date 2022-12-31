@@ -153,7 +153,7 @@ class Product(models.Model):
     description_ar = models.CharField(max_length=300,null=True)
     quantity = models.IntegerField(default=1)
     status = models.CharField(max_length=200, blank=True, null=True,choices=STATUS_CHOICES)
-    image = ResizedImageField(force_format="WEBP",quality=75,upload_to='products/')
+    image =models.ImageField(_("image"), upload_to="products",)
     available = models.BooleanField(default=True)
     barcode_num = models.CharField(max_length=13, null=True, blank=True)
     count_sould = models.PositiveIntegerField(default=0)
@@ -217,7 +217,7 @@ class Variant(models.Model):
         return super().save(*args, **kwargs)
 class ProductImage(models.Model):
     product = models.ForeignKey("shopping.Product", on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to='products')
     def __str__(self):
         return self.product.name
 
